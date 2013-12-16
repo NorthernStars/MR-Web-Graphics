@@ -8,7 +8,7 @@
  */
 
 var mrServerConnection = require( './network/mrserverconnection' );
-//var admindatabase = require( './database/admindatabase' );
+var admindatabase = require( './database/admindatabase' );
 var log4js = require('log4js');
 var logger = log4js.getLogger();
 
@@ -43,8 +43,17 @@ var theGame = mrServerConnection({ connectionname: 'The Game', mrserverip: 'loca
 theGame.connect();
 
 ws.on('connection', function (socket) {
-  logger.debug('Client connected');
-  theGame.addListener(socket);
+	
+	logger.debug('Client connected');
+	
+	socket.on('close', function () {
+		
+		logger.debug('Client disconnected');
+		theGame.removeListener(socket);
+		
+	});
+	
+	theGame.addListener(socket);
 });
 
 /**
