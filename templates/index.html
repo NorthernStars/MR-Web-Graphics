@@ -2,20 +2,21 @@
 <html>
   <head>
     <title>WebSocket echo test</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script>
       var open = false
-        , lastMessage
+        , lastMessage;
 
       window.onload = function () {
         // create socket
         var ws = new WebSocket('ws://localhost:3000');
         ws.onopen = function () {
           open = true;
-        }
+        };
         ws.onmessage = function ( env ) {
           // we got echo back, measure latency
           document.getElementById('data').innerHTML = env.data;
-        }
+        };
 
         // attach listeners to form
         document.getElementById('send').onsubmit = function () {
@@ -29,11 +30,48 @@
             document.getElementById('text').focus();
           }
           return false;
-        }
-      }
+        };
+      };
     </script>
   </head>
   <body>
-    <span id="data"></span>
+  	<div id="wrapper">
+        <div id="headerwrap">
+	        <div id="header">
+	            <span class="mrTitle">Mixed Reality Web Graphics</span>
+	        </div>
+        </div>
+        <div id="navigationwrap">
+	        <div id="navigation">
+	        	<!-- MENUE START -->
+	            <span class="menueItem menueItemActive" id="menueGames">Games</span>
+	            <span class="menueItem" id="menueAdmin">Admin</span>
+	            <span class="menueSeperator"> </span>
+	            <span class="menueItem" id="menueLogin">Login</span>
+	            <!-- MENUE END -->
+	        </div>
+        </div>
+        <div id="contentliquid"><div id="contentwrap">
+        <div id="content">
+        	<!-- CONTENT BEGIN -->
+        	<div class="gameList", id="gameList">
+	        	<span class="gameEntry" id="game1">
+	        		<span class="gameInfo">Game 1: Maus vs. Elefant<br />Status: playing</span>
+	        		<span class="gameButton">Join</span>
+	        	</span>
+	        	<span class="gameEntry" id="game2">
+	        		<span class="gameInfo">Game 2: Pe vs. Nis<br />Status: kickoff</span>
+	        		<span class="gameButton">Join</span>
+	        	</span>
+        	</div>
+        	<!-- CONTENT END -->
+        </div>
+        </div></div>
+        <div id="footerwrap">
+	        <div id="footer">
+	            <span id="mr-subtitle">&copy;2013 by <a href="http://www.northern-stars.de">NorthernStars</a></span>
+	        </div>
+        </div>
+    </div>
   </body>
 </html>

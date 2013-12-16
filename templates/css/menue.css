@@ -1,0 +1,25 @@
+/* Menue style configuration */
+
+.menueItem{
+	display: table-cell;
+	background: #D7D7D7;
+	border-radius: 5px;
+	border: 1px solid #cccccc;
+	padding: 5px;
+	text-transform: uppercase;
+}
+
+.menueItem:hover{
+	background: #D8D8FF;
+	cursor: pointer;
+}
+
+.menueItemActive{
+	background: #D8D8FF;
+	border: 1px solid #888888;
+}
+
+.menueSeperator{
+	display: table-cell;
+	width: 100%;
+}

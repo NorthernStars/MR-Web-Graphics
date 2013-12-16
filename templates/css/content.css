@@ -1,0 +1,21 @@
+/* Configuration of different static content styles */
+
+.mrTitle{
+	font-size: 150%;
+	font-weight: bold;
+}
+
+.gameList{
+	display: table;
+	width: 100%;
+}
+
+.gameEntry{
+	display: table-cell;
+	background: red;
+	width: 100%;
+	border: 1px solid #cccccc;
+	padding: 5px;
+}
+
+.
