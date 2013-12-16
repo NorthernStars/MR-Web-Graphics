@@ -13,5 +13,12 @@
   ],
   "author": "",
   "license": "MIT",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "dependencies": {
+      "express": "3.4.7",
+      "websocket.io": "0.2.1",
+      "log4js": "0.6.9",
+      "sqlite3": "2.1.19",
+      "xml2js": "0.4.0"
+  }
 }

@@ -8,31 +8,32 @@
  */
 
 var mrServerConnection = require( './network/mrserverconnection' );
-var admindatabase = require( './database/admindatabase' );
+//var admindatabase = require( './database/admindatabase' );
 var log4js = require('log4js');
-
 var logger = log4js.getLogger();
 
 var express = require('express')
-, wsio = require('websocket.io');
+, wsio = require('websocket.io')
+, http = require('http');
 
 /**
 * Create express app.
 */
 
 var app = express();
+var server = http.createServer(app);
 
 /**
 * Attach websocket server.
 */
 
-var ws = wsio.attach(app);
+var ws = wsio.attach(server);
 
 /**
 * Serve our code
 */
 
-app.use(express.static('public'));
+app.use(express.static('templates'));
 
 /**
 * Listening on connections
@@ -42,13 +43,12 @@ var theGame = mrServerConnection({ connectionname: 'The Game', mrserverip: 'loca
 theGame.connect();
 
 ws.on('connection', function (socket) {
-	logger.debug('Client connected');
-	theGame.addListener(socket);
+  logger.debug('Client connected');
+  theGame.addListener(socket);
 });
 
 /**
 * Listen
 */
 
-app.listen(3000);
-
+server.listen(3000);
