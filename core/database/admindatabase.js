@@ -29,39 +29,7 @@ module.exports = (function(){
 	
 	var database = new sqlite3.Database( databasefile );
 	
-	var getAdmin = database.prepare( 'SELECT passwd, salt FROM admins WHERE email = $email' );
 
-	// functions
-	
-	// callback = function( boolean )
-	that.authenticateAdmin = function( email, password, callback ){
-		
-		getAdmin.get({
-			$email: email
-		}, function( error, row ){
-			if( error || !row ){
-
-				callback( false );
-				return;
-			}
-
-			if( row.passwd === createSaltedPasswordHash( password, row.salt ) ){
-
-				callback( true );
-				return;
-			}
-
-			callback(false);
-		});
-		
-	};
-	
-	that.closeDatabase = function(){
-		
-		database.close();
-		
-	};
-	
 	// Helper
 	
 	var createSaltedPasswordHash = function( password, salt ){
@@ -103,7 +71,6 @@ module.exports = (function(){
 			generateSalt( function( exception, salt ){
 				
 				var passwordhash = createSaltedPasswordHash( 'sechs54e2i', salt.toString() );
-				logger.debug( passwordhash + ' ' + salt.toString() );
 				
 				addAdminToDatabase( 'eike.petersen@student.fh-kiel.de', passwordhash, salt.toString() );
 
@@ -112,7 +79,6 @@ module.exports = (function(){
 			generateSalt( function( exception, salt ){
 				
 				var passwordhash = createSaltedPasswordHash( 'sechs54e2i', salt.toString() );
-				logger.debug( passwordhash + ' ' + salt.toString() );
 				
 				addAdminToDatabase( 'hannes.eilers@student.fh-kiel.de', passwordhash, salt.toString() );
 
@@ -121,6 +87,38 @@ module.exports = (function(){
 		});
 		
 	}
+
+	// functions
+	
+	var getAdmin = database.prepare( 'SELECT passwd, salt FROM admins WHERE email = $email' );
+	// callback = function( boolean )
+	that.authenticateAdmin = function( email, password, callback ){
+		
+		getAdmin.get({
+			$email: email
+		}, function( error, row ){
+			if( error || !row ){
+
+				callback( false );
+				return;
+			}
+
+			if( row.passwd === createSaltedPasswordHash( password, row.salt ) ){
+
+				callback( true );
+				return;
+			}
+
+			callback(false);
+		});
+		
+	};
+	
+	that.closeDatabase = function(){
+		
+		database.close();
+		
+	};
 
 	return that;
 	

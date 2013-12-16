@@ -12,6 +12,7 @@ var builder = new xml2js.Builder();
 // udp-network
 var udp = require('dgram');
 
+
 module.exports = function( spec ){
 	
 	if ( !spec.mrserverip || !spec.mrserverport ) {
@@ -103,9 +104,31 @@ module.exports = function( spec ){
 	
 	that.addListener = function( socket ){
 		
-		allListeners.push( socket );
+		if( !socket.hasOwnProperty(['connectionlistener']) ){
 		
-	}
+			socket['connectionlistener'] = {};
+		
+		}
+		
+		if( !socket.connectionlistener.hasOwnProperty([spec.connectionname]) ){
+		
+			socket.connectionlistener[spec.connectionname] = allListeners.push( socket ) - 1;
+			
+		}
+		
+	};
+	
+	that.removeListener = function( socket ){
+		
+		if( typeof(socket.connectionlistener[spec.connectionname]) == 'number' ){
+			
+			allListeners.splice( socket.connectionlistener[spec.connectionname], 1);
+			delete socket.connectionlistener[spec.connectionname];
+			
+			
+		}
+		
+	};
 	
 	// helper
 	
@@ -119,7 +142,7 @@ module.exports = function( spec ){
 	
 	var establishConnection = function ( messageFromServer, sender ) {
 		
-		logger.debug( "server got:", messageFromServer, "from", sender.address, ":", sender.port);
+		//logger.trace( "server got:", messageFromServer, "from", sender.address, ":", sender.port);
 		
 		parser.parseString( messageFromServer, function ( error, messageObject ) {
 
@@ -179,7 +202,7 @@ module.exports = function( spec ){
 	
 	toServer.on( 'listening', function () {
 
-		logger.debug( 'server listening', toServer.address().address + ':' + toServer.address().port);
+		logger.debug( 'Listening for packet from mrserver at', toServer.address().address + ':' + toServer.address().port);
 		
 	});
 	
