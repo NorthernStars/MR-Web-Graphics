@@ -12,10 +12,16 @@
         var ws = new WebSocket('ws://localhost:3000');
         ws.onopen = function () {
           open = true;
+          ws.gameName = 'The Game';
+          ws.send( ws.gameName );
         };
         ws.onmessage = function ( env ) {
-          // we got echo back, measure latency
-          document.getElementById('data').innerHTML = env.data;
+        	if( env.data == ws.gameName ){
+        		ws.send( ws.gameName );
+        	} else {
+        		document.getElementById('data').innerHTML = env.data;
+        	}
+          	
         };
 
 		// attach listeners to login form

@@ -18,7 +18,7 @@ module.exports = (function(){
 	var that = {};
 	
 	var databasefile = './' + 'admin.db';
-	var databaseexists = filesystem.existsSync( databasefile )
+	var databaseexists = filesystem.existsSync( databasefile );
 	
 	if( !databaseexists ) {
 		
