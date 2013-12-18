@@ -3,9 +3,12 @@
 @import url("reset.css");
 @import url("content.css");
 @import url("menue.css");
+@import url("overlay.css");
+@import url("form-layout.css");
+@import url("game-list.css");
 
 body {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
     font-size: 13px;
     color:#333
 }
@@ -16,7 +19,7 @@ p {
 
 #wrapper {
     width: 100%;
-    min-width: 800px;
+    min-width: 300px;
     max-width: 1024px;
     margin: 0 auto;
 }
@@ -50,6 +53,7 @@ p {
     background: #E0E0E0;
     border-radius: 10px;
     border: 1px solid #cccccc;
+    border-collapse: separate;
     margin: 5px;
     padding: 5px;
 }

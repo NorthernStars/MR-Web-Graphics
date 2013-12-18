@@ -1,0 +1,31 @@
+/* Configuration of gme list style */
+
+.gameList{
+	display: table;
+	width: 100%;
+	border-spacing: 5px;
+	border-collapse: separate;
+}
+
+.gameEntry{
+	display: table-row;
+	width: 100%;
+}
+
+.gameEntryElement{
+	display: table-cell;
+	background: #EEEEEE;
+	padding: 5px;
+	border: 1px solid #cccccc;	
+	border-radius: 5px;
+	vertical-align: middle;
+	width: 100%;
+	
+	font-weight: bold;
+}
+
+.gameEntryElement > i{
+	text-transform: lowercase;
+	font-style: italic;
+	font-weight: normal;
+}

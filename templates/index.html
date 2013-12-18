@@ -18,6 +18,24 @@
           document.getElementById('data').innerHTML = env.data;
         };
 
+		// attach listeners to login form
+        document.getElementById('menueLogin').onclick = function () {
+          document.getElementById('login').style.visibility='visible';
+        };
+        
+        document.getElementById('loginCancel').onclick = function () {
+          document.getElementById('loginUsername').value='';
+          document.getElementById('loginPassword').value='';
+          document.getElementById('login').style.visibility='hidden';
+        };
+        
+        document.getElementById('loginSubmit').onclick = function () {
+          var usr = document.getElementById('loginUsername').value;
+          var pw = document.getElementById('loginPassword').value;
+          alert("Login als " + usr + "\nPasswort: " + pw );
+          document.getElementById('login').style.visibility='hidden';
+        };
+        
         // attach listeners to form
         document.getElementById('send').onsubmit = function () {
           if (open) {
@@ -31,6 +49,7 @@
           }
           return false;
         };
+        
       };
     </script>
   </head>
@@ -44,10 +63,10 @@
         <div id="navigationwrap">
 	        <div id="navigation">
 	        	<!-- MENUE START -->
-	            <span class="menueItem menueItemActive" id="menueGames">Games</span>
-	            <span class="menueItem" id="menueAdmin">Admin</span>
+	            <span class="button menueItemActive" id="menueGames">Games</span>
+	            <span class="button" id="menueAdmin">Admin</span>
 	            <span class="menueSeperator"> </span>
-	            <span class="menueItem" id="menueLogin">Login</span>
+	            <span class="button" id="menueLogin">Login</span>
 	            <!-- MENUE END -->
 	        </div>
         </div>
@@ -56,12 +75,12 @@
         	<!-- CONTENT BEGIN -->
         	<div class="gameList", id="gameList">
 	        	<span class="gameEntry" id="game1">
-	        		<span class="gameInfo">Game 1: Maus vs. Elefant<br />Status: playing</span>
-	        		<span class="gameButton">Join</span>
+	        		<span class="gameEntryElement">Game 1: Maus vs. Elefant<br /><i>Status: playing</i></span>
+	        		<span class="button">Join</span>
 	        	</span>
 	        	<span class="gameEntry" id="game2">
-	        		<span class="gameInfo">Game 2: Pe vs. Nis<br />Status: kickoff</span>
-	        		<span class="gameButton">Join</span>
+	        		<span class="gameEntryElement">Game 2: Pe vs. Nis<br /><i>Status: kickoff</i></span>
+	        		<span class="button">Join</span>
 	        	</span>
         	</div>
         	<!-- CONTENT END -->
@@ -73,5 +92,29 @@
 	        </div>
         </div>
     </div>
+    
+    <div class="overlay" id="login">
+	    <div class="overlayWrapper">
+	    	<div class="overlayForm" id="loginForm">
+	    		<div class="overlayCancel" id="loginCancel">X</div>
+	    		<div class="overlayRow">
+	    			<div class="overlayFormEntry">Username:</div>
+	    		</div>
+	    		<div class="overlayRow">
+	    			<div class="overlayFormEntry"><input type="text" class="textInput" id="loginUsername" /></div>
+	    		</div>
+	    		<div class="overlayRow">
+	    			<div class="overlayFormEntry">Password:</div>
+	    		</div>
+	    		<div class="overlayRow">
+	    			<div class="overlayFormEntry"><input type="password" class="textInput" id="loginPassword" /></div>
+	    		</div>
+	    		<div class="overlayRow"><div class="overlayFormEntry"> </div></div>
+	    		<div class="overlayRow">
+	    			<div class="button" id="loginSubmit">Login</div>
+	    		</div>
+	    	</div>
+	    </div>
+	</div>
   </body>
 </html>

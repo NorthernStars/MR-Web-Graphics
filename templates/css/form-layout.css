@@ -1,0 +1,9 @@
+/* Configuration of form tags */
+.textInput{
+	font-family: sans-serif;
+	color: #000000;
+	background: #FFFFFF;
+	border: 1px dotted #cccccc;
+	border-radius: 5px;
+	padding: 5px;
+}
