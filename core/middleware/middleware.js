@@ -168,8 +168,6 @@ module.exports = (function(){
 		
 			adminDatabase.authenticateAdmin( req.body.user, req.body.password, function( authenticated ){
 				
-				logger.debug("login of " + req.body.user + " with pw " + req.body.password + " successfull: " + authenticated);
-				
 				if( authenticated ){
 
 					req.session.loggedIn = true;
