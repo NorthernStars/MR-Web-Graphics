@@ -1,0 +1,23 @@
+div(id="contentliquid")
+	div(id="contentwrap")
+		div(id="content")
+			<!-- CONTENT BEGIN -->
+			div(class="gameList", id="gameList")
+				-	for( var game in listOfGames )
+					-	if( listOfGames.hasOwnProperty( game ) )
+							span(class="gameEntry" id= listOfGames[game].getName() )
+								span(class="gameEntryElement") 
+									= listOfGames[game].getName()
+									| : 
+									= listOfGames[game].getYellowTeamName()
+									|  vs. 
+									= listOfGames[game].getBlueTeamName()
+									br
+									i
+									| Status = 
+									= listOfGames[game].getGameStatus()
+								-	if( listOfGames[game].connected() )
+									span( class="button" onclick='post_to_url( "/admin/games/disconnect/' + listOfGames[game].getName() + '" , {} )' ) Disconnect
+								-	else
+									span(class="button" onclick='post_to_url( "/admin/games/connect/' + listOfGames[game].getName() + '" , {} )' ) Connect
+								span(class="button" onclick='post_to_url( "/admin/games/remove/' + listOfGames[game].getName() + '" , {} )' ) Remove

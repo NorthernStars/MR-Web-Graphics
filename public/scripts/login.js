@@ -22,7 +22,7 @@ var onclickloginSubmit = function () {
 	post_to_url( '/login', { user: usr, password: pw });
 };
 
-function post_to_url( path, params, method ) {
+var post_to_url = function( path, params, method ) {
 	method = method || "post";
 
 	var form = document.createElement("form");

@@ -5,6 +5,11 @@ div( id="navigationwrap" )
 		span(class='button' + (games?' menueItemActive':'') id="menueGames" onclick='document.location.href = "/games"' ) Games
 		-	if( isAuthenticated )
 				span(class='button' + (admin?' menueItemActive':'') id="menueAdmin"  onclick='document.location.href = "/admin"' ) Admin
+		-	for( var joinedGame in joinedGames )
+			-	if( joinedGames.hasOwnProperty( joinedGame ) )
+					span( class='button' + (game == joinedGames[joinedGame] ?' menueItemActive':'') onclick='post_to_url( "/games/' + joinedGames[joinedGame] + '" , {} )' ) 
+						=joinedGames[joinedGame]
+								
 		span(class='menueSeperator')
 		-	if( isAuthenticated )
 			span(class='button' id="menueLogin" onclick='onclickmenueLogout()') Logout

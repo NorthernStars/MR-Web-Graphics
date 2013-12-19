@@ -4,7 +4,6 @@ div(id="contentliquid")
 			<!-- CONTENT BEGIN -->
 			div(class="gameList", id="gameList")
 				-	for( var game in listOfGames )
-					-	console.log(game)
 					-	if( listOfGames.hasOwnProperty( game ) && listOfGames[game].connected() )
 							span(class="gameEntry" id= listOfGames[game].getName() )
 								span(class="gameEntryElement") 
@@ -17,4 +16,7 @@ div(id="contentliquid")
 									i
 									| Status = 
 									= listOfGames[game].getGameStatus()
-								span(class="button") Join
+								-	if( joinedGames[listOfGames[game].getName()] )
+									span(class="button" onclick='post_to_url( "/games/leave/' + listOfGames[game].getName() + '" , {} )' ) Leave
+								else
+									span(class="button" onclick='post_to_url( "/games/join/' + listOfGames[game].getName() + '" , {} )' ) Join
