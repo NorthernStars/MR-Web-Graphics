@@ -1,18 +1,18 @@
 /* Configuration of gme list style */
 
-.gameList{
+.list{
 	display: table;
 	width: 100%;
 	border-spacing: 5px;
 	border-collapse: separate;
 }
 
-.gameEntry{
+.listEntry{
 	display: table-row;
 	width: 100%;
 }
 
-.gameEntryElement{
+.listEntryElement{
 	display: table-cell;
 	background: #EEEEEE;
 	padding: 5px;
@@ -24,7 +24,7 @@
 	font-weight: bold;
 }
 
-.gameEntryElement > i{
+.listEntryElement > i{
 	text-transform: lowercase;
 	font-style: italic;
 	font-weight: normal;

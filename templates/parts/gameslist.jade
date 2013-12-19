@@ -2,12 +2,11 @@ div(id="contentliquid")
 	div(id="contentwrap")
 		div(id="content")
 			<!-- CONTENT BEGIN -->
-			div(class="gameList", id="gameList")
+			div(class="list", id="gameList")
 				-	for( var game in listOfGames )
-					-	console.log(game)
 					-	if( listOfGames.hasOwnProperty( game ) && listOfGames[game].connected() )
-							span(class="gameEntry" id= listOfGames[game].getName() )
-								span(class="gameEntryElement") 
+							span(class="listEntry" id= listOfGames[game].getName() )
+								span(class="listEntryElement") 
 									= listOfGames[game].getName()
 									| : 
 									= listOfGames[game].getYellowTeamName()
@@ -17,4 +16,7 @@ div(id="contentliquid")
 									i
 									| Status = 
 									= listOfGames[game].getGameStatus()
-								span(class="button") Join
+								-	if( joinedGames[listOfGames[game].getName()] )
+									span(class="button" onclick='post_to_url( "/games/leave/' + listOfGames[game].getName() + '" , {} )' ) Leave
+								-	else
+									span(class="button" onclick='post_to_url( "/games/join/' + listOfGames[game].getName() + '" , {} )' ) Join

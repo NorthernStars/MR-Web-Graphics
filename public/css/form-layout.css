@@ -1,5 +1,38 @@
 /* Configuration of form tags */
-.textInput{
+
+.button{
+	display: table-cell;
+	background: #D7D7D7;
+	border-radius: 5px;
+	border: 1px solid #cccccc;
+	padding: 5px 10px 5px 10px;
+	text-transform: uppercase;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.button:hover{
+	background: #D8D8FF;
+	cursor: pointer;
+}
+
+input[type="submit"]{
+	display: table-cell;
+	width: 100%;
+}
+
+span[class="button"] > input[type="submit"]{
+	width: auto;
+	padding: 0px;
+	border: 0px;
+}
+
+span[class="button"]:hover > input[type="submit"]{
+	background: #D8D8FF;
+	cursor: pointer;
+}
+
+input{
 	font-family: sans-serif;
 	color: #000000;
 	background: #FFFFFF;

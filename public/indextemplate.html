@@ -4,6 +4,7 @@
     <title>WebSocket echo test</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script>
+    
       var open = false
         , lastMessage;
 
@@ -35,11 +36,11 @@
           document.getElementById('login').style.visibility='hidden';
         };
         
-        document.getElementById('loginSubmit').onclick = function () {
-          var usr = document.getElementById('loginUsername').value;
-          var pw = document.getElementById('loginPassword').value;
-          alert("Login als " + usr + "\nPasswort: " + pw );
-          document.getElementById('login').style.visibility='hidden';
+        document.getElementById('loginForm').onsubmit = function (){
+	      var usr = document.getElementById('loginUsername').value;
+		  var pw = document.getElementById('loginPassword').value;
+		  alert("Login als " + usr + "\nPasswort: " + pw );
+		  document.getElementById('login').style.visibility='hidden';
         };
         
       };
@@ -65,13 +66,24 @@
         <div id="contentliquid"><div id="contentwrap">
         <div id="content">
         	<!-- CONTENT BEGIN -->
-        	<div class="gameList", id="gameList">
-	        	<span class="gameEntry" id="game1">
-	        		<span class="gameEntryElement">Game 1: Maus vs. Elefant<br /><i>Status: playing</i></span>
+        	<form class="list" id="newConnectionForm">         		       		
+        		<span class="listEntry">
+        			<span class="listEntryElement">
+        				Gamename: <input type="text" value="NewGame" size="16" id="newConnectionGamename" />
+        				IP: <input type="text" value="127.0.0.1" size="12" id="newConnectionIP" />
+        				Port: <input type="text" id="newConnectionport" value="9060" size="3" />
+        			</span>
+        			<span class="button"><input type="submit" class="button" id="newGameConnect" value="New game" /></span>
+        		</span>        		
+        	</form>
+        	
+        	<div class="list", id="gameList">
+	        	<span class="listEntry" id="game1">
+	        		<span class="listEntryElement">Game 1: Maus vs. Elefant<br /><i>Status: playing</i></span>
 	        		<span class="button">Join</span>
 	        	</span>
-	        	<span class="gameEntry" id="game2">
-	        		<span class="gameEntryElement">Game 2: Pe vs. Nis<br /><i>Status: kickoff</i></span>
+	        	<span class="listEntry" id="game2">
+	        		<span class="listEntryElement">Game 2: Pe vs. Nis<br /><i>Status: kickoff</i></span>
 	        		<span class="button">Join</span>
 	        	</span>
         	</div>
@@ -87,7 +99,7 @@
     
     <div class="overlay" id="login">
 	    <div class="overlayWrapper">
-	    	<div class="overlayForm" id="loginForm">
+	    	<form class="overlayForm" id="loginForm">	    	
 	    		<div class="overlayCancel" id="loginCancel">X</div>
 	    		<div class="overlayRow">
 	    			<div class="overlayFormEntry">Username:</div>
@@ -103,10 +115,11 @@
 	    		</div>
 	    		<div class="overlayRow"><div class="overlayFormEntry"> </div></div>
 	    		<div class="overlayRow">
-	    			<div class="button" id="loginSubmit">Login</div>
-	    		</div>
-	    	</div>
+	    			<input type="submit" class="button" id="loginSubmit" value="Login" />
+	    		</div>	    		
+	    	</form>
 	    </div>
 	</div>
+	
   </body>
 </html>
