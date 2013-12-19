@@ -42,4 +42,4 @@ var post_to_url = function( path, params, method ) {
 
 	document.body.appendChild( form );
 	form.submit();
-}
+};

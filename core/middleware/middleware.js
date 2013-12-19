@@ -163,9 +163,13 @@ module.exports = (function(){
 	
 	that.loginAdmin = function( req, res, next ){
 		
+		logger.debug("login");
+		
 		if( !req.session.loggedIn && req.body && req.body.user && req.body.password ){
 		
 			adminDatabase.authenticateAdmin( req.body.user, req.body.password, function( authenticated ){
+				
+				logger.debug("login of " + req.body.user + " with pw " + req.body.password + " successfull: " + authenticated);
 				
 				if( authenticated ){
 
