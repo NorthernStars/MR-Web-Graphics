@@ -5,6 +5,10 @@
 	width: 100%;
 	border-spacing: 5px;
 	border-collapse: separate;
+	
+	border: 1px solid #cccccc;	
+	border-radius: 5px;
+	margin: 3px 0px;
 }
 
 .listEntry{

@@ -4,7 +4,6 @@
     <title>WebSocket echo test</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script>
-    
       var open = false
         , lastMessage;
 
@@ -63,41 +62,86 @@
 	            <!-- MENUE END -->
 	        </div>
         </div>
-        <div id="contentliquid"><div id="contentwrap">
-        <div id="content">
-        	<!-- CONTENT BEGIN -->
-        	<form class="list" id="newGameForm">         		       		
-        		<span class="listEntry">
-        			<span class="listEntryElement">
-        				Gamename: <input type="text" value="NewGame" size="16" id="newConnectionGamename" />
-        				IP: <input type="text" value="127.0.0.1" size="12" id="newConnectionIP" />
-        				Port: <input type="text" id="newConnectionPort" value="9060" size="3" />
+        <div id="contentwrap">
+	        <div id="content">
+	        	<!-- CONTENT BEGIN -->
+	        	<div class="list", id="gameControl">
+        			<span class="listEntry">
+        				<span class="listEntryElement gameInfoHeader">Maus 03 : 01 Elefant<span>Time: 05:47</span></span>
+        				<span class="button" id="gameStartStop">Start</span>
+        				<span class="button" id="gameRequestTimeout">Timeout</span>
         			</span>
-        			<span class="button"><input type="submit" class="button" id="newGameConnect" value="New Game" /></span>
-        		</span>        		
-        	</form>
-        	
-        	<div class="list", id="gameList">
-	        	<span class="listEntry" id="game1">
-	        		<span class="listEntryElement">Game 1: Maus vs. Elefant<br /><i>Status: playing</i></span>
-	        		<span class="button">Join</span>
-	        	</span>
-	        	<span class="listEntry" id="game2">
-	        		<span class="listEntryElement">Game 2: Pe vs. Nis<br /><i>Status: kickoff</i></span>
-	        		<span class="button">Join</span>
-	        	</span>
-	        	<span class="listEntry" id="game3">
-	        		<span class="listEntryElement">Game 2: Pe vs. Nis<br /><i>Status: kickoff</i></span>
-	        		<span class="button">Join</span>
-	        	</span>
-	        	<span class="listEntry" id="game4">
-	        		<span class="listEntryElement">Game 2: Pe vs. Nis<br /><i>Status: kickoff</i></span>
-	        		<span class="button">Join</span>
-	        	</span>
-        	</div>
-        	<!-- CONTENT END -->
+        		</div>
+	        	<canvas class="game" id="game"></canvas>
+	        	<div class="list", id="gameInfo">
+	        		Game is running ...
+	        	</div>
+	        	
+	        	<script>
+	        		// get canvas elements
+				    var canvas = document.getElementById('game');
+				    var context = canvas.getContext('2d');
+				    
+				    // clear canvas
+				    context.clearRect(0, 0, canvas.width, canvas.height);
+				    
+				    // update canvas size
+				    var w = document.getElementById('game').scrollHeight;
+				    var h = document.getElementById('game').scrollWidth;				    
+				    canvas.width = w;
+				    canvas.height = h;
+				    
+				
+				    // drawing line
+				    context.beginPath();
+				    context.moveTo(0.5*w, 0.05*h);
+				    context.lineTo(0.5*w, (1-0.05)*h);
+				    context.lineWidth = 2;
+				    context.lineCap = 'round';				    
+				    context.strokeStyle = '#FFFFFF';
+				    context.stroke();
+				    
+				    // drawing circle
+				    context.beginPath();
+				    context.arc( 0.5*w, 0.5*h, 5, 0, 2*Math.PI, false );
+				    context.fillStyle = '#FFFFFF';
+				    context.fill();
+				    
+			  	</script>
+	        	
+	        	
+	        	<form class="list" id="newGameForm">         		       		
+	        		<span class="listEntry">
+	        			<span class="listEntryElement">
+	        				Gamename: <input type="text" value="NewGame" size="16" id="newConnectionGamename" />
+	        				IP: <input type="text" value="127.0.0.1" size="12" id="newConnectionIP" />
+	        				Port: <input type="text" id="newConnectionPort" value="9060" size="3" />
+	        			</span>
+	        			<span class="button"><input type="submit" class="button" id="newGameConnect" value="New Game" /></span>
+	        		</span>        		
+	        	</form>
+	        	
+	        	<div class="list", id="gameList">
+		        	<span class="listEntry" id="game1">
+		        		<span class="listEntryElement">Game 1: Maus vs. Elefant<br /><i>Status: playing</i></span>
+		        		<span class="button">Join</span>
+		        	</span>
+		        	<span class="listEntry" id="game2">
+		        		<span class="listEntryElement">Game 2: Pe vs. Nis<br /><i>Status: kickoff</i></span>
+		        		<span class="button">Join</span>
+		        	</span>
+		        	<span class="listEntry" id="game3">
+		        		<span class="listEntryElement">Game 2: Pe vs. Nis<br /><i>Status: kickoff</i></span>
+		        		<span class="button">Join</span>
+		        	</span>
+		        	<span class="listEntry" id="game4">
+		        		<span class="listEntryElement">Game 2: Pe vs. Nis<br /><i>Status: kickoff</i></span>
+		        		<span class="button">Join</span>
+		        	</span>
+	        	</div>
+	        	<!-- CONTENT END -->
+	        </div>
         </div>
-        </div></div>
         <div id="footerwrap">
 	        <div id="footer">
 	            <span id="mr-subtitle">&copy;2013 by <a href="http://www.northern-stars.de">NorthernStars</a></span>
