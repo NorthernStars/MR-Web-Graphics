@@ -16,7 +16,7 @@ div(id="contentliquid")
 									i
 									| Status = 
 									= listOfGames[game].getGameStatus()
-								-	if( joinedGames[listOfGames[game].getName()] )
+								-	if( joinedGames && joinedGames[listOfGames[game].getName()] )
 									span(class="button" onclick='post_to_url( "/games/leave/' + listOfGames[game].getName() + '" , {} )' ) Leave
 								-	else
 									span(class="button" onclick='post_to_url( "/games/join/' + listOfGames[game].getName() + '" , {} )' ) Join
