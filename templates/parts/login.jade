@@ -1,6 +1,6 @@
 div(class="overlay" id="login")
 	div(class="overlayWrapper")
-		div(class="overlayForm" id="loginForm")
+		form(class="overlayForm" id="loginForm" onsubmit='onclickloginSubmit()')
 			div(class="overlayCancel" id="loginCancel" onclick='onclickloginCancel()') X
 			div(class="overlayRow")
 				div(class="overlayFormEntry") Username:
@@ -15,4 +15,4 @@ div(class="overlay" id="login")
 			div(class="overlayRow")
 				div(class="overlayFormEntry")
 			div(class="overlayRow")
-			div(class="button" id="loginSubmit" onclick='onclickloginSubmit()') Login
+			input(type="submit" class="button" id="loginSubmit") Login
