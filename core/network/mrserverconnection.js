@@ -28,7 +28,7 @@ module.exports = function( spec ){
 	logger.debug( 'Creating connection', spec.connectionname, 'to mrserver at',spec.mrserverip, ':', spec.mrserverport );
 	
 	var that = {};
-	var toServer = udp.createSocket("udp4");
+	var toServer = null;
 	var lastWorldData = {};
 	var allListeners = [];
 	
@@ -81,6 +81,24 @@ module.exports = function( spec ){
 		
 		if( !spec.connected ){
 		
+			toServer = udp.createSocket("udp4");
+			
+			// events
+			
+			toServer.on( 'error', function ( error ) {
+				
+				logger.debug( 'Error in connection ', spec.connectionname, '(', spec.serverip, ':', spec.serverport, '):\n', error.stack);
+				
+			});
+			
+			toServer.on( 'listening', function () {
+
+				logger.debug( 'Listening for packet from mrserver at', toServer.address().address + ':' + toServer.address().port);
+				
+			});
+			
+			// connection
+			
 			toServer.removeAllListeners('message');
 			toServer.on('message', establishConnection );
 			
@@ -112,6 +130,8 @@ module.exports = function( spec ){
 			sendMessageObjectToServer( connectionClosed );
 			
 			toServer.close();
+			
+			spec.connected = false;
 		}
 		
 	};
@@ -211,20 +231,6 @@ module.exports = function( spec ){
 		});
 		
 	};
-	
-	// events
-	
-	toServer.on( 'error', function ( error ) {
-		
-		logger.debug( 'Error in connection ', spec.connectionname, '(', spec.serverip, ':', spec.serverport, '):\n', error.stack);
-		
-	});
-	
-	toServer.on( 'listening', function () {
-
-		logger.debug( 'Listening for packet from mrserver at', toServer.address().address + ':' + toServer.address().port);
-		
-	});
 	
 	return that;
 	

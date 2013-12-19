@@ -20,7 +20,7 @@ module.exports = (function(){
 	
 	that.startPage = function( req, res, next ){
 		
-		res.render('index', { title: 'Mixed Reality Web Graphics', main: true, isAuthenticated: req.session.loggedIn });
+		res.render('index', { title: 'Mixed Reality Web Graphics', main: true, isAuthenticated: req.session.loggedIn, joinedGames: req.session.joinedGames });
 		
 	};
 	
@@ -28,11 +28,77 @@ module.exports = (function(){
 		
 		if( req.session.loggedIn ){
 			
-			res.render('admin', { title: 'Administration', admin: true, isAuthenticated: req.session.loggedIn });
+			res.render('admin', { title: 'Administration', admin: true, isAuthenticated: req.session.loggedIn, listOfGames: _listOfGames, joinedGames: req.session.joinedGames } );
 		
 		} else {
 			
-			that.startPage( req, res, next );
+			res.redirect( 'back' );
+			
+		}
+	
+	};
+	
+	that.adminDisconnectGame = function( req, res, next ){
+		
+		if( req.session.loggedIn ){
+			
+			if( req.params.game && _listOfGames[req.params.game] && _listOfGames[req.params.game].connected() ){
+				
+				_listOfGames[req.params.game].disconnect();
+				
+			}
+
+			res.redirect( '/admin' );
+			
+		} else {
+			
+			res.redirect( 'back' );
+			
+		}
+	
+	};
+	
+	that.adminConnectGame = function( req, res, next ){
+		
+		if( req.session.loggedIn ){
+
+			if( req.params.game && _listOfGames[req.params.game] && !_listOfGames[req.params.game].connected() ){
+				
+				_listOfGames[req.params.game].connect();
+				
+			}
+
+			res.redirect( '/admin' );
+			
+		} else {
+			
+			res.redirect( 'back' );
+			
+		}
+	
+	};
+	
+	that.adminRemoveGame = function( req, res, next ){
+		
+		if( req.session.loggedIn ){
+
+			if( req.params.game && _listOfGames[req.params.game]){
+				
+				if( _listOfGames[req.params.game].connected() ){
+					
+					_listOfGames[req.params.game].disconnect();
+					
+				}
+				//TODO: close all websockets
+				delete _listOfGames[req.params.game];
+				
+			}
+			
+			res.redirect( '/admin' );
+			
+		} else {
+			
+			res.redirect( 'back' );
 			
 		}
 	
@@ -40,14 +106,62 @@ module.exports = (function(){
 	
 	that.gamesPage = function( req, res, next ){
 		
-		logger.debug(_listOfGames);
+		res.render('games', { title: 'List of games', games: true, isAuthenticated: req.session.loggedIn, listOfGames: _listOfGames, joinedGames: req.session.joinedGames } );
 		
-		res.render('games', { title: 'List of games', games: true, isAuthenticated: req.session.loggedIn, listOfGames: _listOfGames } );
+	};
+	
+	that.gamesJoin = function( req, res, next ){
+		
+		if( req.params.game && _listOfGames[req.params.game]){
+			
+			if( !req.session.joinedGames ){
+				
+				req.session.joinedGames = {};
+				
+			}
+			req.session.joinedGames[req.params.game] = req.params.game;
+			
+			res.redirect( '/games/' + req.params.game );
+			
+		} else {
+			
+			res.redirect( 'back' );
+			
+		}
+		
+	};
+	
+	that.gamesLeave = function( req, res, next ){
+		
+		if( req.params.game && _listOfGames[req.params.game]){
+			
+			delete req.session.joinedGames[req.params.game];
+			
+			res.redirect( '/games' );
+			
+		} else {
+			
+			res.redirect( 'back' );
+			
+		}
+		
+	};
+	
+	that.watchGame = function( req, res, next ){
+		
+		if( req.params.game && _listOfGames[req.params.game]){
+			
+			res.render('game', { title: req.params.game, game: req.params.game, isAuthenticated: req.session.loggedIn, joinedGames: req.session.joinedGames } );
+			
+		} else {
+			
+			res.redirect( 'back' );
+			
+		}
 		
 	};
 	
 	that.loginAdmin = function( req, res, next ){
-		
 		
 		if( !req.session.loggedIn && req.body && req.body.user && req.body.password ){
 		
@@ -60,7 +174,7 @@ module.exports = (function(){
 			
 				} else {
 					
-					that.startPage( req, res, next );
+					res.redirect( 'back' );
 					
 				}
 				
@@ -68,7 +182,7 @@ module.exports = (function(){
 			
 		} else {
 			
-			that.startPage( req, res, next );
+			res.redirect( 'back' );
 			
 		}
 	};
@@ -81,8 +195,8 @@ module.exports = (function(){
 			req.session.loggedIn = false;
 		
 		}
-			
-		that.startPage( req, res, next );
+		
+		res.redirect( '/' );
 			
 	};
 	

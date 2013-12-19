@@ -1,0 +1,15 @@
+extends ./parts/layout
+
+block links
+	link(rel="stylesheet", type="text/css", href="../css/style.css")
+	
+block scripts
+	script( src='../scripts/login.js' )
+	script( src='../scripts/websocket.js' )
+
+block content
+	include ./parts/navigation
+	include ./parts/game
+
+block extra
+	include ./parts/login
