@@ -19,7 +19,7 @@ p {
 
 #wrapper {
     width: 100%;
-    min-width: 300px;
+    min-width: 400px;
     max-width: 1024px;
     margin: 0 auto;
 }
