@@ -1,0 +1,13 @@
+div( id="navigationwrap" )
+	div(id="navigation")
+		<!-- MENUE START -->
+		span(class='button' + (main?' menueItemActive':'') id="menueMain" onclick='document.location.href = "/"' ) Main
+		span(class='button' + (games?' menueItemActive':'') id="menueGames" onclick='document.location.href = "/games"' ) Games
+		-	if( isAuthenticated )
+				span(class='button' + (admin?' menueItemActive':'') id="menueAdmin"  onclick='document.location.href = "/admin"' ) Admin
+		span(class='menueSeperator')
+		-	if( isAuthenticated )
+			span(class='button' id="menueLogin" onclick='onclickmenueLogout()') Logout
+		-	else
+			span(class='button' id="menueLogin" onclick='onclickmenueLogin()') Login
+		<!-- MENUE END -->

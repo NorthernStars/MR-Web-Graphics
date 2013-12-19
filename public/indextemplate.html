@@ -42,20 +42,6 @@
           document.getElementById('login').style.visibility='hidden';
         };
         
-        // attach listeners to form
-        document.getElementById('send').onsubmit = function () {
-          if (open) {
-            // record the timestamp
-            lastMessage = +new Date;
-            // send the message
-            ws.send(document.getElementById('text').value);
-            // clear the input
-            document.getElementById('text').value = '';
-            document.getElementById('text').focus();
-          }
-          return false;
-        };
-        
       };
     </script>
   </head>

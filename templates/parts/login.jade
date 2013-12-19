@@ -1,0 +1,18 @@
+div(class="overlay" id="login")
+	div(class="overlayWrapper")
+		div(class="overlayForm" id="loginForm")
+			div(class="overlayCancel" id="loginCancel" onclick='onclickloginCancel()') X
+			div(class="overlayRow")
+				div(class="overlayFormEntry") Username:
+			div(class="overlayRow")
+				div(class="overlayFormEntry") 
+					input(type="text" class="textInput" id="loginUsername")
+			div(class="overlayRow")
+				div(class="overlayFormEntry") Password:
+			div(class="overlayRow")
+				div(class="overlayFormEntry")
+					input(type="password" class="textInput" id="loginPassword")
+			div(class="overlayRow")
+				div(class="overlayFormEntry")
+			div(class="overlayRow")
+			div(class="button" id="loginSubmit" onclick='onclickloginSubmit()') Login

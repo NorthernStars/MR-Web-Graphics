@@ -33,12 +33,26 @@ module.exports = function( spec ){
 	var allListeners = [];
 	
 	spec.connected = false;
+	spec.gamestatus = 'unkown';
+	spec.yellowteamname = 'Team Yellow';
+	spec.blueteamname = 'Team Blue';
 	
-
 	// getter
 	
 	that.getName = function(){
 		return spec.connectionname;
+	};	
+	
+	that.getYellowTeamName = function(){
+		return spec.yellowteamname;
+	};
+	
+	that.getBlueTeamName = function(){
+		return spec.blueteamname;
+	};
+	
+	that.getGameStatus = function(){
+		return spec.gamestatus;
 	};
 	
 	that.getMRServerIP = function(){
@@ -178,13 +192,19 @@ module.exports = function( spec ){
 		
 		//logger.trace( "server got:", xmlWorldData, "from", sender.address, ":", sender.port);
 		
-		parser.parseString( xmlWorldData, function ( error, WorldData ) {
+		parser.parseString( xmlWorldData, function ( error, worldData ) {
 			
-			var worldDataInJSON = JSON.stringify( WorldData );
+			if(  worldData &&  worldData.WorldData ){
 			
-			for( var i = 0; i < allListeners.length; i += 1 ){
+				spec.gamestatus = worldData.WorldData.playmode.toString();
+			
+				var worldDataInJSON = JSON.stringify( worldData.WorldData );
 				
-				allListeners[i].send( worldDataInJSON );
+				for( var i = 0; i < allListeners.length; i += 1 ){
+					
+					allListeners[i].send( worldDataInJSON );
+					
+				}
 				
 			}
 			

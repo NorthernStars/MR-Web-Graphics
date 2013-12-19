@@ -1,0 +1,12 @@
+doctype 5
+html
+	head
+		title= title
+		block links
+		block scripts
+	body
+		div(id="wrapper")
+			include ./header
+			block content
+			include ./footer
+		block extra

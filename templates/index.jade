@@ -1,0 +1,14 @@
+extends ./parts/layout
+
+block links
+	include ./parts/links
+	
+block scripts
+	script( src='./scripts/login.js' )
+
+block content
+	include ./parts/navigation
+	include ./parts/maintext
+
+block extra
+	include ./parts/login
