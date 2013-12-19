@@ -4,5 +4,5 @@ var onsubmitNewGameForm = function(){
 	var host = document.getElementById('newConnectionIP').value;
 	var port = document.getElementById('newConnectionPort').value;
 
-	post_to_url( '/admin/game/add', {name: gamename, host: host, port: port} );
+	post_to_url( '/admin/games/add', {name: gamename, host: host, port: port} );
 };

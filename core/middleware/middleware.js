@@ -5,7 +5,9 @@
 //logging 
 var log4js = require( 'log4js' );
 var logger = log4js.getLogger();
+
 var adminDatabase = require( './../database/admindatabase' );
+var mrServerConnection = require( './../network/mrserverconnection' );
 
 module.exports = (function(){
 	
@@ -32,7 +34,7 @@ module.exports = (function(){
 		
 		} else {
 			
-			res.redirect( 'back' );
+			res.redirect( '/' );
 			
 		}
 	
@@ -91,6 +93,26 @@ module.exports = (function(){
 				}
 				//TODO: close all websockets
 				delete _listOfGames[req.params.game];
+				
+			}
+			
+			res.redirect( '/admin' );
+			
+		} else {
+			
+			res.redirect( 'back' );
+			
+		}
+	
+	};
+	
+	that.adminAddGame = function( req, res, next ){
+		
+		if( req.session.loggedIn ){
+
+			if( req.body && req.body.name && req.body.host && req.body.port && !_listOfGames[req.body.name] ){
+				
+				_listOfGames[req.body.name] = mrServerConnection({ connectionname: req.body.name, mrserverip: req.body.host, mrserverport: req.body.port });
 				
 			}
 			
