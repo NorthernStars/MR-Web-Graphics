@@ -4,11 +4,12 @@
 	display: block;
 	position: relative;
 	display: table;
-	width: 100%;
+	/*width: 100%;*/
 	height: calc(90vh - 202px);
 	border: 1px solid #cccccc;	
 	border-radius: 10px;
 	background: #49b949;
+	margin: auto;
 }
 
 .gameInfoHeader > span{
