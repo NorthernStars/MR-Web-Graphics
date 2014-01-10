@@ -12,6 +12,18 @@
 	
 	var database = new sqlite3.Database( databasefile );
 	
+	var addAdminToDatabase = function( email, passwordhash, salt ){
+		
+		var stmt = database.prepare( 'INSERT INTO admins ( email, passwd, salt ) VALUES ( $email, $passwd, $salt )' );
+		
+		stmt.run({
+	        $email: email,
+	        $passwd: passwordhash,
+	        $salt: salt
+	    });
+
+	};
+	
 	if( !databaseexists ){
 		
 		logger.debug( 'Creating tables in admindatabase file and filling them with dummydata.' );

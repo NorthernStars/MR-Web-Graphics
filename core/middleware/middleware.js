@@ -6,10 +6,12 @@
 var log4js = require( 'log4js' );
 var logger = log4js.getLogger();
 
-var adminDatabase = require( './../database/admindatabase' );
+var adminDatabase = require( './../database/database' );
 var mrServerConnection = require( './../network/mrserverconnection' );
 
 module.exports = (function(){
+	
+	adminDatabase.setDatabase( './admin.db' );
 	
 	var that = {};
 	var  _listOfGames = {};
@@ -185,18 +187,25 @@ module.exports = (function(){
 	
 	that.loginAdmin = function( req, res, next ){
 		
-		
+		logger.debug( '1' );
+
 		if( !req.session.loggedIn && req.body && req.body.user && req.body.password ){
-		
-			adminDatabase.authenticateAdmin( req.body.user, req.body.password, function( authenticated ){
+			
+			logger.debug( '2' );
+
+			adminDatabase.authenticateUser( req.body.user, req.body.password, function( authenticated ){
 				
 				if( authenticated ){
+					
+					logger.debug( '3' );
 
 					req.session.loggedIn = true;
 					that.adminPage( req, res, next );
 			
 				} else {
 					
+					logger.debug( '4' );
+
 					res.redirect( 'back' );
 					
 				}
