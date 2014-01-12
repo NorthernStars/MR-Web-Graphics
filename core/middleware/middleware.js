@@ -3,11 +3,13 @@
  */
 
 //logging 
-var log4js = require( 'log4js' );
-var logger = log4js.getLogger();
+var logging = require( process.cwd() + '/core/logging/logging.js' );
+var logger = logging.getLogger( 'middleware' );
 
-var adminDatabase = require( './../database/database' );
+var adminDatabase = require( './../persistence/database' );
 var mrServerConnection = require( './../network/mrserverconnection' );
+
+var helpers_password = require( process.cwd() + '/core/middleware/helper/security_password.js' );
 
 module.exports = (function(){
 	
@@ -185,27 +187,23 @@ module.exports = (function(){
 		
 	};
 	
-	that.loginAdmin = function( req, res, next ){
+	that.login = function( req, res, next ){
 		
-		logger.debug( '1' );
-
+		logger.debug( 'User tries to log in' );
 		if( !req.session.loggedIn && req.body && req.body.user && req.body.password ){
-			
-			logger.debug( '2' );
-
-			adminDatabase.authenticateUser( req.body.user, req.body.password, function( authenticated ){
-				
-				if( authenticated ){
+		    logger.debug( req.body.user + ' ' + req.body.password );
+			adminDatabase.getUser( req.body.user, function( error, password, salt, flags ){
+			    logger.debug( password + ' ' + helpers_password.createSaltedPasswordHash( req.body.password, salt ) );
+				if( !error && password && salt &&
+					password === helpers_password.createSaltedPasswordHash( req.body.password, salt ) ){
 					
-					logger.debug( '3' );
-
+					logger.debug( 'User', req.body.user, 'logged in' );
 					req.session.loggedIn = true;
-					that.adminPage( req, res, next );
+					res.redirect( 'back' );
 			
 				} else {
 					
-					logger.debug( '4' );
-
+					logger.debug( 'User', req.body.user, 'could not be authenticated' );
 					res.redirect( 'back' );
 					
 				}
@@ -219,7 +217,7 @@ module.exports = (function(){
 		}
 	};
 	
-	that.logoutAdmin = function( req, res, next ){
+	that.logout = function( req, res, next ){
 		
 		
 		if( req.session.loggedIn ){
@@ -237,7 +235,7 @@ module.exports = (function(){
 		res.render('error', { status: 404, url: req.url } );
   
 	};
-
+	
 	return that;
 	
 }());

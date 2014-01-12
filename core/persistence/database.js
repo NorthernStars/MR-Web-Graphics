@@ -1,91 +1,123 @@
 /**
- * sqlite database
+ * Database connection(singleton)
+ * Creates and manages the connection to the database ( at the moment sqlite )
+ * and all accessors
+ * 
+ * @author Hannes Eilers
+ * @author Eike Petersen
+ * 
+ * @version Beta 1.0
  */
+"use strict";
 
-//logging 
-var log4js = require( 'log4js' );
-var logger = log4js.getLogger();
-//sqlite
+// logging
+var logging = require( process.cwd() + '/core/logging/logging.js' ),
+    logger = logging.getLogger( 'database' );
+
+// sqlite
+logger.debug( 'Loading sqlite3 module' );
 var sqlite3 = require( 'sqlite3' ).verbose();
-// filesystem
-var filesystem = require("fs");
-// hashbuliding
-var helpers_password = require('./security_password');
 
+// filesystem
+logger.debug( 'Loading fs module' );
+var filesystem = require("fs");
 
 module.exports = (function(){
-	
-	var that = {};
-	
-	var databasefile = '';
-	
-	var database = null;
-	
-	// prepared statements
-	
-	var prepStatements = {};
-	
-	// functions
-	
-	that.setDatabase = function( database ){
-		
-		databasefile = database;
-		var databaseexists = filesystem.existsSync( databasefile );
+    
+    var that = {},
+        databasefile_ = '',
+        database_ = null;
+    
+    // prepared statements, to mitigate security-risks
+    
+    var prepStatements_ = {};
+    
+    // functions
+    
+    /** 
+     * set the database-file, initializes and opens the database and
+     * prepares all needed Statements
+     * 
+     * @param {String} file path and identifier
+     */
+    that.setDatabase = function( database ){
+        
+        databasefile_ = database;
 
-		if( databaseexists ) {
-			
-			logger.debug( 'Opening database file ' + databasefile );
+        if( filesystem.existsSync( databasefile_ ) ) {
+            
+            logger.debug( 'Opening database file ' + databasefile_ );
 
-			database = new sqlite3.Database( databasefile );
-			
-			{
-				prepStatements.getUser = database.prepare( 'SELECT passwd, salt FROM admins WHERE email = $email' );
-			}
-		}
-		
-	};
-	
-	// callback = function( boolean )
-	that.authenticateUser = function( email, password, callback ){
-		
-		if( !database ){
-			
-			logger.error( 'No existing database.' );
-			callback( false );
-			return;
-			
-		}
-		
-		prepStatements.getUser.get({
-			$email: email
-		}, function( error, row ){
-			if( error || !row ){
-				
-				logger.debug( 'No existing user ' + email );
-				callback( false );
-				return;
-				
-			}
+            database_ = new sqlite3.Database( databasefile_ );
+            
+            {
+                logger.debug( 'Prepareing statements' );
+                prepStatements_.getUser = database_.prepare( 'SELECT password, salt FROM users WHERE email = $email' );
+            }
+        }
+        
+    };
 
-			if( row.passwd === helpers_password.createSaltedPasswordHash( password, row.salt ) ){
+    /** 
+     * Tries to get the userdata from the database
+     * If an error happens the callback gets only the error object
+     * else if the user cannot be found all callback-parameters are empty
+     * else if the user is found the callback is called with error=null, 
+     * the passwordhash, the salt and the user-roleflags
+     * 
+     * @param {String} username(email)
+     * @param {function}    callback to process the found data
+     *                        the callback has the format:
+     *                        function( error, password, salt, flags )
+     */
+    that.getUser = function( email, callback ){
+        
+        if( !database_ ){
+            
+            logger.error( 'No existing database' );
+            callback( new Error( 'No existing database' ) );
+            return;
+            
+        }
+        
+        prepStatements_.getUser.get(
+                {
+                    $email: email 
+                }, 
+                function( error, row ){
+                    if( error ){
+                        
+                        logger.error( 'Error getting user', email, error );
+                        callback( error );
+                        return;
+                        
+                    }
+                    
+                    if( row ){
+        
+                        logger.debug( 'Found user', email );
+                        callback( null, row.password, row.salt );
+                        return;
+                        
+                    }
+        
+                    logger.debug( 'Could not find user', email );
+                    callback();
+                    
+                });
+        
+    };
+    
+    /** 
+     * Closes the Database
+     */
+    that.closeDatabase = function(){
+        
+        database_.close();
+        database_ = null;
+        
+    };
 
-				logger.debug( 'Existing user ' + email + ' logged in.' );
-				callback( true );
-				return;
-			}
-
-			callback(false);
-		});
-		
-	};
-	
-	that.closeDatabase = function(){
-		
-		database.close();
-		database = null;
-		
-	};
-
-	return that;
-	
+    return that;
+    
 }());

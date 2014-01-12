@@ -11,8 +11,8 @@
 var middleWare = require( './middleware/middleware' );
 var webSockets = require( './network/websockets' );
 
-var log4js = require('log4js');
-var logger = log4js.getLogger();
+var logging = require( process.cwd() + '/core/logging/logging.js' );
+var logger = logging.getLogger( 'core' );
 
 var express = require('express');
 var http = require('http');
@@ -36,8 +36,8 @@ app.use(express.static('public'));
 app.set( 'view engine', 'jade' );
 app.set( 'views', './templates' );
 
-app.post('/login', middleWare.loginAdmin );
-app.post('/logout', middleWare.logoutAdmin );
+app.post('/login', middleWare.login );
+app.post('/logout', middleWare.logout );
 app.post('/admin/games/disconnect/:game', middleWare.adminDisconnectGame );
 app.post('/admin/games/connect/:game', middleWare.adminConnectGame );
 app.post('/admin/games/remove/:game', middleWare.adminRemoveGame );
