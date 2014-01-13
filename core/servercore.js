@@ -38,16 +38,20 @@ app.set( 'views', './templates' );
 
 app.post('/login', middleWare.login );
 app.post('/logout', middleWare.logout );
+
 app.post('/admin/games/disconnect/:game', middleWare.adminDisconnectGame );
 app.post('/admin/games/connect/:game', middleWare.adminConnectGame );
 app.post('/admin/games/remove/:game', middleWare.adminRemoveGame );
 app.post('/admin/games/add', middleWare.adminAddGame );
 app.get('/admin', middleWare.adminPage );
+
 app.post('/games/leave/:game', middleWare.gamesLeave );
 app.post('/games/join/:game', middleWare.gamesJoin );
 app.get('/games', middleWare.gamesPage );
+
 app.post('/games/:game', middleWare.watchGame );
 app.get('/games/:game', middleWare.watchGame );
+
 app.get('/', middleWare.startPage );
 
 app.use( app.router );
