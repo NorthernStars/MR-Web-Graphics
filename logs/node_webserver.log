@@ -1,0 +1,66 @@
+[2014-01-13 14:36:08.481] [DEBUG] logging - Created logger "middleware"
+[2014-01-13 14:36:08.487] [DEBUG] logging - Created logger "database"
+[2014-01-13 14:36:08.488] [DEBUG] database - Loading sqlite3 module
+[2014-01-13 14:36:08.500] [DEBUG] database - Loading fs module
+[2014-01-13 14:36:08.618] [DEBUG] database - Opening database file ./admin.db
+[2014-01-13 14:36:08.618] [DEBUG] database - Prepareing statements
+[2014-01-13 14:36:08.748] [DEBUG] logging - Created logger "core"
+[2014-01-13 14:36:33.546] [DEBUG] middleware - User tries to log in
+[2014-01-13 14:36:33.547] [DEBUG] middleware - wert wert
+[2014-01-13 14:36:33.550] [DEBUG] database - Found user wert
+[2014-01-13 14:36:33.551] [DEBUG] middleware - 02a98ce519ba321dfe90bd3ca57cf5baf28efbadbcf4ef26d4422bb0f802bed9 02a98ce519ba321dfe90bd3ca57cf5baf28efbadbcf4ef26d4422bb0f802bed9
+[2014-01-13 14:36:33.554] [DEBUG] middleware - User wert logged in
+[2014-01-13 14:36:41.300] [DEBUG] [default] - Creating connection NewGame to mrserver at 127.0.0.1 : 9060
+[2014-01-13 14:36:45.778] [DEBUG] [default] - Listening for packet from mrserver at 0.0.0.0:53033
+[2014-01-13 14:36:49.735] [DEBUG] [default] - Listening for packet from mrserver at 0.0.0.0:57535
+[2014-01-13 14:39:02.878] [DEBUG] [default] - Creating connection Testgame to mrserver at 192.168.0.22 : 9060
+[2014-01-13 14:39:03.828] [DEBUG] [default] - Listening for packet from mrserver at 0.0.0.0:58245
+[2014-01-13 14:39:09.447] [DEBUG] [default] - Listening for packet from mrserver at 0.0.0.0:38628
+[2014-01-13 14:39:10.675] [DEBUG] [default] - Listening for packet from mrserver at 0.0.0.0:45981
+[2014-01-13 14:39:30.717] [DEBUG] [default] - Creating connection Testgame to mrserver at 192.168.178.22 : 9060
+[2014-01-13 14:39:32.333] [DEBUG] [default] - Listening for packet from mrserver at 0.0.0.0:53655
+[2014-01-13 14:39:32.409] [DEBUG] [default] - Connection acknowleged by defaultserver
+[2014-01-13 14:40:20.097] [DEBUG] [default] - Client connected
+[2014-01-13 14:42:14.140] [DEBUG] logging - Created logger "middleware"
+[2014-01-13 14:42:14.147] [DEBUG] logging - Created logger "database"
+[2014-01-13 14:42:14.147] [DEBUG] database - Loading sqlite3 module
+[2014-01-13 14:42:14.158] [DEBUG] database - Loading fs module
+[2014-01-13 14:42:14.213] [DEBUG] database - Opening database file ./admin.db
+[2014-01-13 14:42:14.214] [DEBUG] database - Prepareing statements
+[2014-01-13 14:42:14.265] [DEBUG] logging - Created logger "core"
+[2014-01-13 14:42:49.479] [DEBUG] [default] - Creating connection Testgame II to mrserver at 192.168.178.22 : 9060
+[2014-01-13 14:42:51.747] [DEBUG] [default] - Listening for packet from mrserver at 0.0.0.0:56439
+[2014-01-13 14:42:51.759] [DEBUG] [default] - Connection acknowleged by defaultserver
+[2014-01-13 14:44:13.171] [DEBUG] [default] - Client connected
+[2014-01-13 14:44:26.551] [DEBUG] [default] - Client disconnected
+[2014-01-13 14:44:26.830] [DEBUG] [default] - Client connected
+[2014-01-13 14:45:23.586] [DEBUG] [default] - Client disconnected
+[2014-01-13 14:45:23.927] [DEBUG] [default] - Client connected
+[2014-01-13 14:45:39.945] [DEBUG] [default] - Client disconnected
+[2014-01-13 14:45:40.177] [DEBUG] [default] - Client connected
+[2014-01-13 14:45:41.428] [DEBUG] [default] - Client disconnected
+[2014-01-13 14:45:41.666] [DEBUG] [default] - Client connected
+[2014-01-13 14:47:08.260] [DEBUG] [default] - Client disconnected
+[2014-01-13 14:47:08.487] [DEBUG] [default] - Client connected
+[2014-01-13 14:48:01.563] [DEBUG] [default] - Client disconnected
+[2014-01-13 14:48:01.863] [DEBUG] [default] - Client connected
+[2014-01-13 14:48:02.579] [DEBUG] [default] - Client disconnected
+[2014-01-13 14:48:03.240] [DEBUG] [default] - Client connected
+[2014-01-13 15:00:28.356] [DEBUG] [default] - Client disconnected
+[2014-01-13 15:00:28.606] [DEBUG] [default] - Client connected
+[2014-01-13 15:00:29.010] [DEBUG] [default] - Client disconnected
+[2014-01-13 15:00:29.211] [DEBUG] [default] - Client connected
+[2014-01-13 15:00:29.439] [DEBUG] [default] - Client disconnected
+[2014-01-13 15:00:29.688] [DEBUG] [default] - Client connected
+[2014-01-13 15:00:29.767] [DEBUG] [default] - Client disconnected
+[2014-01-13 15:00:30.050] [DEBUG] [default] - Client connected
+[2014-01-13 15:00:34.975] [DEBUG] [default] - Client disconnected
+[2014-01-13 15:00:35.264] [DEBUG] [default] - Client connected
+[2014-01-13 15:00:35.685] [DEBUG] [default] - Client disconnected
+[2014-01-13 15:00:35.939] [DEBUG] [default] - Client connected
+[2014-01-13 15:00:36.170] [DEBUG] [default] - Client disconnected
+[2014-01-13 15:00:36.399] [DEBUG] [default] - Client connected
+[2014-01-13 15:00:52.744] [DEBUG] [default] - Client disconnected
+[2014-01-13 15:00:53.028] [DEBUG] [default] - Client connected
+[2014-01-13 15:00:53.471] [DEBUG] [default] - Client disconnected
+[2014-01-13 15:00:53.750] [DEBUG] [default] - Client connected

@@ -11,6 +11,9 @@ Than download complete project and execute on projects root directory:
 sudo apt-get install npm
 npm install
 
+Create database from projects root directory.
+node setup_db.js 
+
 
 Usage
 -----
