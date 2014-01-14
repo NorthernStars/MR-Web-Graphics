@@ -1,0 +1,7 @@
+[2014-01-12 09:59:19.763] [DEBUG] logging - Created logger "middleware"
+[2014-01-12 09:59:19.779] [DEBUG] logging - Created logger "database"
+[2014-01-12 09:59:19.779] [DEBUG] database - Loading sqlite3 module
+[2014-01-12 09:59:19.795] [DEBUG] database - Loading fs module
+[2014-01-12 09:59:19.841] [DEBUG] database - Opening database file ./admin.db
+[2014-01-12 09:59:19.841] [DEBUG] database - Prepareing statements
+[2014-01-12 09:59:19.919] [DEBUG] logging - Created logger "core"
