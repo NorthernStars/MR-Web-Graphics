@@ -40,7 +40,7 @@ module.exports = (function(){
      * 
      * @param {String} file path and identifier
      */
-    that.setDatabase = function( database ){
+    that.initializeDatabase = function( database ){
         
         databasefile_ = database;
 
