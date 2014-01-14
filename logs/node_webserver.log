@@ -5,3 +5,417 @@
 [2014-01-12 09:59:19.841] [DEBUG] database - Opening database file ./admin.db
 [2014-01-12 09:59:19.841] [DEBUG] database - Prepareing statements
 [2014-01-12 09:59:19.919] [DEBUG] logging - Created logger "core"
+[2014-01-14 16:54:10.074] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 16:54:10.090] [DEBUG] logging - Created logger "database"
+[2014-01-14 16:54:10.090] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 16:54:10.106] [DEBUG] database - Loading fs module
+[2014-01-14 16:54:10.152] [DEBUG] logging - Created logger "routes"
+[2014-01-14 16:54:10.168] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 16:54:10.168] [DEBUG] database - Prepareing statements
+[2014-01-14 16:54:10.293] [DEBUG] logging - Created logger "core"
+[2014-01-14 17:35:26.075] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 17:35:26.122] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:35:26.122] [INFO] routes - Created root routes
+[2014-01-14 17:35:26.138] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:35:26.138] [DEBUG] logging - Created logger "database"
+[2014-01-14 17:35:26.138] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 17:35:26.153] [DEBUG] database - Loading fs module
+[2014-01-14 17:35:26.169] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 17:35:26.169] [DEBUG] database - Prepareing statements
+[2014-01-14 17:35:26.169] [INFO] routes - Created authentication routes
+[2014-01-14 17:35:26.169] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:35:26.185] [INFO] routes - Created error routes
+[2014-01-14 17:35:26.247] [DEBUG] logging - Created logger "core"
+[2014-01-14 17:38:22.511] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 17:38:22.573] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:38:22.573] [INFO] routes - Created root routes
+[2014-01-14 17:38:22.573] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:38:22.573] [DEBUG] logging - Created logger "database"
+[2014-01-14 17:38:22.573] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 17:38:22.589] [DEBUG] database - Loading fs module
+[2014-01-14 17:38:22.604] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 17:38:22.604] [DEBUG] database - Prepareing statements
+[2014-01-14 17:38:22.604] [INFO] routes - Created authentication routes
+[2014-01-14 17:38:22.604] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:38:22.604] [INFO] routes - Created error routes
+[2014-01-14 17:38:22.667] [DEBUG] logging - Created logger "core"
+[2014-01-14 17:39:12.790] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 17:39:12.853] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:39:12.853] [INFO] routes - Created root routes
+[2014-01-14 17:39:12.853] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:39:12.853] [DEBUG] logging - Created logger "database"
+[2014-01-14 17:39:12.853] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 17:39:12.868] [DEBUG] database - Loading fs module
+[2014-01-14 17:39:12.884] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 17:39:12.884] [DEBUG] database - Prepareing statements
+[2014-01-14 17:39:12.884] [INFO] routes - Created authentication routes
+[2014-01-14 17:39:12.884] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:39:12.884] [INFO] routes - Created error routes
+[2014-01-14 17:39:12.946] [DEBUG] logging - Created logger "core"
+[2014-01-14 17:48:27.775] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 17:48:27.837] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:48:27.837] [INFO] routes - Created root routes
+[2014-01-14 17:48:27.837] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:48:27.837] [DEBUG] logging - Created logger "database"
+[2014-01-14 17:48:27.853] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 17:48:27.869] [DEBUG] database - Loading fs module
+[2014-01-14 17:48:27.884] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 17:48:27.884] [DEBUG] database - Prepareing statements
+[2014-01-14 17:48:27.884] [INFO] routes - Created authentication routes
+[2014-01-14 17:48:27.884] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:48:27.884] [INFO] routes - Created error routes
+[2014-01-14 17:48:27.962] [DEBUG] logging - Created logger "core"
+[2014-01-14 17:49:36.899] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 17:49:36.961] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:49:36.961] [INFO] routes - Created root routes
+[2014-01-14 17:49:36.961] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:49:36.961] [DEBUG] logging - Created logger "database"
+[2014-01-14 17:49:36.977] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 17:49:36.992] [DEBUG] database - Loading fs module
+[2014-01-14 17:49:36.992] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 17:49:36.992] [DEBUG] database - Prepareing statements
+[2014-01-14 17:49:37.008] [INFO] routes - Created authentication routes
+[2014-01-14 17:49:37.008] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:49:37.008] [INFO] routes - Created error routes
+[2014-01-14 17:49:37.070] [DEBUG] logging - Created logger "core"
+[2014-01-14 17:53:20.049] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 17:53:20.104] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:53:20.105] [INFO] routes - Created root routes
+[2014-01-14 17:53:20.109] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:53:20.111] [DEBUG] logging - Created logger "database"
+[2014-01-14 17:53:20.112] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 17:53:20.127] [DEBUG] database - Loading fs module
+[2014-01-14 17:53:20.137] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 17:53:20.138] [DEBUG] database - Prepareing statements
+[2014-01-14 17:53:20.140] [INFO] routes - Created authentication routes
+[2014-01-14 17:53:20.142] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:53:20.143] [INFO] routes - Created error routes
+[2014-01-14 17:53:20.207] [DEBUG] logging - Created logger "core"
+[2014-01-14 17:55:56.569] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 17:55:56.632] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:55:56.632] [INFO] routes - Created root routes
+[2014-01-14 17:55:56.632] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:55:56.632] [DEBUG] logging - Created logger "database"
+[2014-01-14 17:55:56.632] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 17:55:56.647] [DEBUG] database - Loading fs module
+[2014-01-14 17:55:56.663] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 17:55:56.663] [DEBUG] database - Prepareing statements
+[2014-01-14 17:55:56.663] [INFO] routes - Created authentication routes
+[2014-01-14 17:55:56.663] [DEBUG] logging - Created logger "routes"
+[2014-01-14 17:55:56.663] [INFO] routes - Created error routes
+[2014-01-14 17:55:56.725] [DEBUG] logging - Created logger "core"
+[2014-01-14 17:56:09.689] [DEBUG] routes - User tries to log in
+[2014-01-14 17:56:09.689] [DEBUG] routes - wert wert
+[2014-01-14 17:56:09.705] [DEBUG] database - Found user wert
+[2014-01-14 17:56:09.705] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 17:56:09.705] [DEBUG] routes - User wert logged in
+[2014-01-14 17:57:03.820] [DEBUG] routes - User tries to log in
+[2014-01-14 17:57:03.820] [DEBUG] routes - wert wert
+[2014-01-14 17:57:03.836] [DEBUG] database - Found user wert
+[2014-01-14 17:57:03.836] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 17:57:03.836] [DEBUG] routes - User wert logged in
+[2014-01-14 17:57:06.690] [DEBUG] [default] - Creating connection NewGame to mrserver at 127.0.0.1 : 9060
+[2014-01-14 17:57:08.126] [DEBUG] [default] - Listening for packet from mrserver at 0.0.0.0:53427
+[2014-01-14 17:57:34.380] [DEBUG] routes - User tries to log in
+[2014-01-14 17:57:34.380] [DEBUG] routes - wert wert
+[2014-01-14 17:57:34.380] [DEBUG] database - Found user wert
+[2014-01-14 17:57:34.380] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 17:57:34.380] [DEBUG] routes - User wert logged in
+[2014-01-14 18:04:59.308] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 18:04:59.355] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:04:59.355] [INFO] routes - Created root routes
+[2014-01-14 18:04:59.371] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:04:59.371] [DEBUG] logging - Created logger "database"
+[2014-01-14 18:04:59.371] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 18:04:59.386] [DEBUG] database - Loading fs module
+[2014-01-14 18:04:59.386] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 18:04:59.386] [DEBUG] database - Prepareing statements
+[2014-01-14 18:04:59.386] [INFO] routes - Created authentication routes
+[2014-01-14 18:04:59.402] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:04:59.402] [INFO] routes - Created error routes
+[2014-01-14 18:04:59.464] [DEBUG] logging - Created logger "core"
+[2014-01-14 18:05:06.703] [DEBUG] routes - User tries to log in
+[2014-01-14 18:05:06.703] [DEBUG] routes - wert wert
+[2014-01-14 18:05:06.703] [DEBUG] database - Found user wert
+[2014-01-14 18:05:06.703] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 18:05:06.703] [DEBUG] routes - User wert logged in
+[2014-01-14 18:16:55.910] [DEBUG] [default] - Creating connection NewGame to mrserver at 127.0.0.1 : 9060
+[2014-01-14 18:40:07.555] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 18:40:07.618] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:40:07.618] [INFO] routes - Created root routes
+[2014-01-14 18:40:07.618] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:40:07.633] [DEBUG] logging - Created logger "database"
+[2014-01-14 18:40:07.633] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 18:40:07.649] [DEBUG] database - Loading fs module
+[2014-01-14 18:40:07.649] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 18:40:07.665] [DEBUG] database - Prepareing statements
+[2014-01-14 18:40:07.665] [INFO] routes - Created authentication routes
+[2014-01-14 18:40:07.665] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:40:07.665] [INFO] routes - Created error routes
+[2014-01-14 18:40:07.743] [DEBUG] logging - Created logger "core"
+[2014-01-14 18:40:16.900] [DEBUG] routes - User tries to log in
+[2014-01-14 18:40:16.900] [DEBUG] routes - wert wert
+[2014-01-14 18:40:16.900] [DEBUG] database - Found user wert
+[2014-01-14 18:40:16.900] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 18:40:16.900] [DEBUG] routes - User wert logged in
+[2014-01-14 18:41:33.771] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 18:41:33.818] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:41:33.834] [INFO] routes - Created root routes
+[2014-01-14 18:41:33.834] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:41:33.834] [DEBUG] logging - Created logger "database"
+[2014-01-14 18:41:33.834] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 18:41:33.849] [DEBUG] database - Loading fs module
+[2014-01-14 18:41:33.865] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 18:41:33.865] [DEBUG] database - Prepareing statements
+[2014-01-14 18:41:33.865] [INFO] routes - Created authentication routes
+[2014-01-14 18:41:33.865] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:41:33.865] [INFO] routes - Created error routes
+[2014-01-14 18:41:33.943] [DEBUG] logging - Created logger "core"
+[2014-01-14 18:41:34.068] [INFO] core - 1389721294068
+[2014-01-14 18:41:38.467] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 18:41:38.514] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:41:38.514] [INFO] routes - Created root routes
+[2014-01-14 18:41:38.530] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:41:38.530] [DEBUG] logging - Created logger "database"
+[2014-01-14 18:41:38.530] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 18:41:38.545] [DEBUG] database - Loading fs module
+[2014-01-14 18:41:38.561] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 18:41:38.561] [DEBUG] database - Prepareing statements
+[2014-01-14 18:41:38.561] [INFO] routes - Created authentication routes
+[2014-01-14 18:41:38.561] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:41:38.561] [INFO] routes - Created error routes
+[2014-01-14 18:41:38.623] [DEBUG] logging - Created logger "core"
+[2014-01-14 18:41:38.764] [INFO] core - 1389721298764
+[2014-01-14 18:42:18.387] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 18:42:18.450] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:42:18.450] [INFO] routes - Created root routes
+[2014-01-14 18:42:18.450] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:42:18.450] [DEBUG] logging - Created logger "database"
+[2014-01-14 18:42:18.450] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 18:42:18.465] [DEBUG] database - Loading fs module
+[2014-01-14 18:42:18.481] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 18:42:18.481] [DEBUG] database - Prepareing statements
+[2014-01-14 18:42:18.481] [INFO] routes - Created authentication routes
+[2014-01-14 18:42:18.481] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:42:18.497] [INFO] routes - Created error routes
+[2014-01-14 18:42:18.559] [DEBUG] logging - Created logger "core"
+[2014-01-14 18:42:18.684] [INFO] core - 1389721338684
+[2014-01-14 18:42:32.973] [DEBUG] routes - User tries to log in
+[2014-01-14 18:42:32.973] [DEBUG] routes - wert wert
+[2014-01-14 18:42:32.973] [DEBUG] database - Found user wert
+[2014-01-14 18:42:32.973] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 18:42:32.989] [DEBUG] routes - User wert logged in
+[2014-01-14 18:43:50.193] [DEBUG] routes - User tries to log in
+[2014-01-14 18:43:50.193] [DEBUG] routes - wert wert
+[2014-01-14 18:43:50.193] [DEBUG] database - Found user wert
+[2014-01-14 18:43:50.193] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 18:43:50.193] [DEBUG] routes - User wert logged in
+[2014-01-14 18:44:27.369] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 18:44:27.431] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:44:27.431] [INFO] routes - Created root routes
+[2014-01-14 18:44:27.431] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:44:27.431] [DEBUG] logging - Created logger "database"
+[2014-01-14 18:44:27.431] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 18:44:27.447] [DEBUG] database - Loading fs module
+[2014-01-14 18:44:27.462] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 18:44:27.462] [DEBUG] database - Prepareing statements
+[2014-01-14 18:44:27.462] [INFO] routes - Created authentication routes
+[2014-01-14 18:44:27.462] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:44:27.462] [INFO] routes - Created error routes
+[2014-01-14 18:44:27.525] [DEBUG] logging - Created logger "core"
+[2014-01-14 18:44:27.665] [INFO] core - 1389721467665
+[2014-01-14 18:44:36.900] [DEBUG] routes - User tries to log in
+[2014-01-14 18:44:36.900] [DEBUG] routes - wert wert
+[2014-01-14 18:44:36.900] [DEBUG] database - Found user wert
+[2014-01-14 18:44:36.900] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 18:44:36.900] [DEBUG] routes - User wert logged in
+[2014-01-14 18:51:28.903] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 18:51:28.965] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:51:28.965] [INFO] routes - Created root routes
+[2014-01-14 18:51:28.965] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:51:28.965] [DEBUG] logging - Created logger "database"
+[2014-01-14 18:51:28.965] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 18:51:28.997] [DEBUG] database - Loading fs module
+[2014-01-14 18:51:28.997] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 18:51:28.997] [DEBUG] database - Prepareing statements
+[2014-01-14 18:51:28.997] [INFO] routes - Created authentication routes
+[2014-01-14 18:51:29.012] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:51:29.012] [INFO] routes - Created error routes
+[2014-01-14 18:51:29.090] [DEBUG] logging - Created logger "core"
+[2014-01-14 18:51:29.246] [INFO] core - 1389721889246
+[2014-01-14 18:51:39.527] [DEBUG] routes - User tries to log in
+[2014-01-14 18:51:39.527] [DEBUG] routes - wert wert
+[2014-01-14 18:51:39.527] [DEBUG] database - Found user wert
+[2014-01-14 18:51:39.527] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 18:51:39.527] [DEBUG] routes - User wert logged in
+[2014-01-14 18:52:06.016] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 18:52:06.063] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:52:06.063] [INFO] routes - Created root routes
+[2014-01-14 18:52:06.079] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:52:06.079] [DEBUG] logging - Created logger "database"
+[2014-01-14 18:52:06.079] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 18:52:06.094] [DEBUG] database - Loading fs module
+[2014-01-14 18:52:06.094] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 18:52:06.094] [DEBUG] database - Prepareing statements
+[2014-01-14 18:52:06.110] [INFO] routes - Created authentication routes
+[2014-01-14 18:52:06.110] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:52:06.110] [INFO] routes - Created error routes
+[2014-01-14 18:52:06.172] [DEBUG] logging - Created logger "core"
+[2014-01-14 18:52:06.297] [INFO] core - 1389721926297
+[2014-01-14 18:52:13.177] [DEBUG] routes - User tries to log in
+[2014-01-14 18:52:13.192] [DEBUG] routes - wert wert
+[2014-01-14 18:52:13.192] [DEBUG] database - Found user wert
+[2014-01-14 18:52:13.192] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 18:52:13.192] [DEBUG] routes - User wert logged in
+[2014-01-14 18:52:30.774] [DEBUG] routes - User tries to log in
+[2014-01-14 18:52:30.774] [DEBUG] routes - wert wert
+[2014-01-14 18:52:30.774] [DEBUG] database - Found user wert
+[2014-01-14 18:52:30.774] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 18:52:30.774] [DEBUG] routes - User wert logged in
+[2014-01-14 18:54:45.432] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 18:54:45.479] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:54:45.479] [INFO] routes - Created root routes
+[2014-01-14 18:54:45.479] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:54:45.479] [DEBUG] logging - Created logger "database"
+[2014-01-14 18:54:45.479] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 18:54:45.495] [DEBUG] database - Loading fs module
+[2014-01-14 18:54:45.510] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 18:54:45.510] [DEBUG] database - Prepareing statements
+[2014-01-14 18:54:45.510] [INFO] routes - Created authentication routes
+[2014-01-14 18:54:45.510] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:54:45.510] [INFO] routes - Created error routes
+[2014-01-14 18:54:45.573] [DEBUG] logging - Created logger "core"
+[2014-01-14 18:54:45.713] [INFO] core - 1389722085713
+[2014-01-14 18:54:52.281] [DEBUG] routes - User tries to log in
+[2014-01-14 18:54:52.281] [DEBUG] routes - wert wert
+[2014-01-14 18:54:52.296] [DEBUG] database - Found user wert
+[2014-01-14 18:54:52.296] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 18:54:52.296] [DEBUG] routes - User wert logged in
+[2014-01-14 18:55:28.691] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 18:55:28.738] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:55:28.738] [INFO] routes - Created root routes
+[2014-01-14 18:55:28.754] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:55:28.754] [DEBUG] logging - Created logger "database"
+[2014-01-14 18:55:28.754] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 18:55:28.769] [DEBUG] database - Loading fs module
+[2014-01-14 18:55:28.769] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 18:55:28.769] [DEBUG] database - Prepareing statements
+[2014-01-14 18:55:28.769] [INFO] routes - Created authentication routes
+[2014-01-14 18:55:28.785] [DEBUG] logging - Created logger "routes"
+[2014-01-14 18:55:28.785] [INFO] routes - Created error routes
+[2014-01-14 18:55:28.847] [DEBUG] logging - Created logger "core"
+[2014-01-14 18:55:28.972] [INFO] core - 1389722128972
+[2014-01-14 23:43:18.467] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 23:43:18.566] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:43:18.572] [INFO] routes - Created root routes
+[2014-01-14 23:43:18.575] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:43:18.587] [INFO] routes - Created error routes
+[2014-01-14 23:43:18.592] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:43:18.601] [DEBUG] logging - Created logger "database"
+[2014-01-14 23:43:18.603] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 23:43:18.632] [DEBUG] database - Loading fs module
+[2014-01-14 23:43:18.650] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 23:43:18.652] [DEBUG] database - Prepareing statements
+[2014-01-14 23:43:18.655] [INFO] routes - Created user authentication routes
+[2014-01-14 23:43:18.659] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:43:18.668] [INFO] routes - Created game administration routes
+[2014-01-14 23:43:18.805] [DEBUG] logging - Created logger "core"
+[2014-01-14 23:43:19.116] [INFO] core - 1389739399116
+[2014-01-14 23:44:21.671] [DEBUG] routes - User tries to log in
+[2014-01-14 23:44:21.672] [DEBUG] routes - wert wert
+[2014-01-14 23:44:21.676] [DEBUG] database - Found user wert
+[2014-01-14 23:44:21.681] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 23:44:21.687] [DEBUG] routes - User wert logged in
+[2014-01-14 23:44:31.207] [DEBUG] routes - User tries to log in
+[2014-01-14 23:44:31.210] [DEBUG] routes - wert wert
+[2014-01-14 23:44:31.217] [DEBUG] database - Found user wert
+[2014-01-14 23:44:31.219] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 23:44:31.223] [DEBUG] routes - User wert logged in
+[2014-01-14 23:44:57.218] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 23:44:57.288] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:44:57.290] [INFO] routes - Created root routes
+[2014-01-14 23:44:57.293] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:44:57.296] [INFO] routes - Created error routes
+[2014-01-14 23:44:57.303] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:44:57.307] [DEBUG] logging - Created logger "database"
+[2014-01-14 23:44:57.309] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 23:44:57.324] [DEBUG] database - Loading fs module
+[2014-01-14 23:44:57.339] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 23:44:57.341] [DEBUG] database - Prepareing statements
+[2014-01-14 23:44:57.344] [INFO] routes - Created user authentication routes
+[2014-01-14 23:44:57.350] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:44:57.353] [INFO] routes - Created game administration routes
+[2014-01-14 23:44:57.432] [DEBUG] logging - Created logger "core"
+[2014-01-14 23:45:06.488] [DEBUG] routes - User tries to log in
+[2014-01-14 23:45:06.490] [DEBUG] routes - wert wert
+[2014-01-14 23:45:06.493] [DEBUG] database - Found user wert
+[2014-01-14 23:45:06.495] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 23:45:06.498] [DEBUG] routes - User wert logged in
+[2014-01-14 23:49:20.013] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 23:49:20.109] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:49:20.113] [INFO] routes - Created root routes
+[2014-01-14 23:49:20.119] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:49:20.122] [INFO] routes - Created error routes
+[2014-01-14 23:49:20.128] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:49:20.141] [DEBUG] logging - Created logger "database"
+[2014-01-14 23:49:20.154] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 23:49:20.179] [DEBUG] database - Loading fs module
+[2014-01-14 23:49:20.198] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 23:49:20.204] [DEBUG] database - Prepareing statements
+[2014-01-14 23:49:20.209] [INFO] routes - Created user authentication routes
+[2014-01-14 23:49:20.213] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:49:20.217] [INFO] routes - Created game administration routes
+[2014-01-14 23:49:20.471] [DEBUG] logging - Created logger "core"
+[2014-01-14 23:49:37.066] [DEBUG] routes - User tries to log in
+[2014-01-14 23:49:37.069] [DEBUG] routes - wert wert
+[2014-01-14 23:49:37.082] [DEBUG] database - Found user wert
+[2014-01-14 23:49:37.086] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 23:49:37.089] [DEBUG] routes - User wert logged in
+[2014-01-14 23:49:39.774] [DEBUG] [default] - Creating connection NewGame to mrserver at 127.0.0.1 : 9060
+[2014-01-14 23:52:38.606] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 23:52:38.729] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:52:38.731] [INFO] routes - Created root routes
+[2014-01-14 23:52:38.734] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:52:38.737] [INFO] routes - Created error routes
+[2014-01-14 23:52:38.741] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:52:38.744] [DEBUG] logging - Created logger "database"
+[2014-01-14 23:52:38.744] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 23:52:38.762] [DEBUG] database - Loading fs module
+[2014-01-14 23:52:38.774] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 23:52:38.775] [DEBUG] database - Prepareing statements
+[2014-01-14 23:52:38.777] [INFO] routes - Created user authentication routes
+[2014-01-14 23:52:38.780] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:52:38.781] [INFO] routes - Created game administration routes
+[2014-01-14 23:52:38.919] [DEBUG] logging - Created logger "core"
+[2014-01-14 23:52:51.770] [DEBUG] routes - User tries to log in
+[2014-01-14 23:52:51.772] [DEBUG] routes - wert wert
+[2014-01-14 23:52:51.777] [DEBUG] database - Found user wert
+[2014-01-14 23:52:51.780] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 23:52:51.782] [DEBUG] routes - User wert logged in
+[2014-01-14 23:52:54.502] [DEBUG] [default] - Creating connection NewGame to mrserver at 127.0.0.1 : 9060
+[2014-01-14 23:52:54.504] [DEBUG] routes - undefined
+[2014-01-14 23:57:30.787] [DEBUG] logging - Created logger "middleware"
+[2014-01-14 23:57:30.917] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:57:30.919] [INFO] routes - Created root routes
+[2014-01-14 23:57:30.922] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:57:30.924] [INFO] routes - Created error routes
+[2014-01-14 23:57:30.929] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:57:30.934] [DEBUG] logging - Created logger "database"
+[2014-01-14 23:57:30.936] [DEBUG] database - Loading sqlite3 module
+[2014-01-14 23:57:30.953] [DEBUG] database - Loading fs module
+[2014-01-14 23:57:30.966] [DEBUG] database - Opening database file ./admin.db
+[2014-01-14 23:57:30.968] [DEBUG] database - Prepareing statements
+[2014-01-14 23:57:30.971] [INFO] routes - Created user authentication routes
+[2014-01-14 23:57:30.974] [DEBUG] logging - Created logger "routes"
+[2014-01-14 23:57:30.977] [INFO] routes - Created game administration routes
+[2014-01-14 23:57:31.140] [DEBUG] logging - Created logger "core"
+[2014-01-14 23:57:41.755] [DEBUG] routes - User tries to log in
+[2014-01-14 23:57:41.758] [DEBUG] routes - wert wert
+[2014-01-14 23:57:41.762] [DEBUG] database - Found user wert
+[2014-01-14 23:57:41.770] [DEBUG] routes - 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38 4a568399981b3c8aebad25592576ab39971d4db45c177bd3ce271829b88d2e38
+[2014-01-14 23:57:41.773] [DEBUG] routes - User wert logged in
+[2014-01-14 23:57:44.957] [DEBUG] [default] - Creating connection NewGame to mrserver at 127.0.0.1 : 9060
+[2014-01-14 23:57:44.959] [DEBUG] routes - undefined
+[2014-01-14 23:57:47.531] [DEBUG] [default] - Listening for packet from mrserver at 0.0.0.0:60208
+[2014-01-14 23:59:18.014] [DEBUG] [default] - Listening for packet from mrserver at 0.0.0.0:60209
+[2014-01-14 23:59:18.158] [DEBUG] [default] - Connection acknowleged by defaultserver

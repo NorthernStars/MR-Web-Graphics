@@ -75,7 +75,7 @@ module.exports = (function(){
             
     };
     
-    logger.info('Created authentication routes');
+    logger.info('Created user authentication routes');
     
     return that;
     

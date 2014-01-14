@@ -36,7 +36,10 @@ app.configure(function(){
     app.use( express.urlencoded() );
     app.use( express.cookieParser() );
     app.use( express.session( { key: 'session', //TODO: real sessiondb
-        secret: 'SEKR37' } ) );
+        secret: 'SEKR37',
+        cookie: {
+            maxAge  :  60 * 20 * 1000 // 20 minuites lifetime
+        } } ) );
     app.use( app.router );
     
     app.use( express.static('public') );
@@ -48,11 +51,11 @@ app.configure(function(){
 app.post('/user/login', middleWare.routes.user.login );
 app.post('/user/logout', middleWare.routes.user.logout );
 
-app.post('/games/admin/disconnect/:game', middleWare.adminDisconnectGame );
-app.post('/games/admin/connect/:game', middleWare.adminConnectGame );
-app.post('/games/admin/remove/:game', middleWare.adminRemoveGame );
-app.post('/games/admin/add', middleWare.adminAddGame );
-app.get('/games/admin', middleWare.adminPage );
+app.post('/games/admin/disconnect/:game', middleWare.routes.games.disconnectGame );
+app.post('/games/admin/connect/:game', middleWare.routes.games.connectGame );
+app.post('/games/admin/remove/:game', middleWare.routes.games.removeGame );
+app.post('/games/admin/add', middleWare.routes.games.addGame );
+app.get('/games/admin', middleWare.routes.games.adminPage );
 
 app.post('/games/leave/:game', middleWare.gamesLeave );
 app.post('/games/join/:game', middleWare.gamesJoin );
