@@ -1,5 +1,5 @@
 /**
- * Root routes of the webserver(singleton)
+ * Errorroutes of the webserver(singleton)
  * 
  * @author Hannes Eilers
  * @author Eike Petersen
@@ -16,17 +16,17 @@ module.exports = (function(){
     var that = {};
     
     /** 
-     * Displays the mainpage 'index'
+     * Displays the error 'Page not found'(404)
      * 
      * @param needs the request, response, and next objects of express
      */
-    that.startPage = function( req, res, next ){
+    that.error404 = function( req, res, next ){
         
-        res.render('index', { title: 'Mixed Reality Web Graphics', main: true, isAuthenticated: req.session.loggedIn, joinedGames: req.session.joinedGames });
-        
+        res.render('error', { status: 404, url: req.url } );
+  
     };
     
-    logger.info('Created root routes');
+    logger.info('Created error routes');
     
     return that;
     

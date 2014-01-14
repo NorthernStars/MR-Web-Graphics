@@ -6,17 +6,19 @@
 var logging = require( process.cwd() + '/core/logging/logging.js' );
 var logger = logging.getLogger( 'middleware' );
 
-var adminDatabase = require( './../persistence/database' );
 var mrServerConnection = require( './../network/mrserverconnection' );
 
-var helpers_password = require( process.cwd() + '/core/middleware/helper/security_password.js' );
+var route_root = require( process.cwd() + '/core/middleware/routes/root.js' );
+var route_user_authenticate = require( process.cwd() + '/core/middleware/routes/user/authenticate.js' );
+var route_error = require( process.cwd() + '/core/middleware/routes/error.js' );
 
 module.exports = (function(){
 	
-	adminDatabase.setDatabase( './admin.db' );
-	
 	var that = {};
-	var  _listOfGames = {};
+	that.routes = {};
+	that.routes.user = {};
+	
+	var _listOfGames = {};
 	
 	that.registerGamesList = function( listOfGames ){
 		
@@ -24,11 +26,7 @@ module.exports = (function(){
 		
 	};
 	
-	that.startPage = function( req, res, next ){
-		
-		res.render('index', { title: 'Mixed Reality Web Graphics', main: true, isAuthenticated: req.session.loggedIn, joinedGames: req.session.joinedGames });
-		
-	};
+	that.routes.startPage = route_root.startPage;
 	
 	that.adminPage = function( req, res, next ){
 		
@@ -54,7 +52,7 @@ module.exports = (function(){
 				
 			}
 
-			res.redirect( '/admin' );
+			res.redirect( 'back' );
 			
 		} else {
 			
@@ -74,7 +72,7 @@ module.exports = (function(){
 				
 			}
 
-			res.redirect( '/admin' );
+			res.redirect( 'back' );
 			
 		} else {
 			
@@ -100,7 +98,7 @@ module.exports = (function(){
 				
 			}
 			
-			res.redirect( '/admin' );
+			res.redirect( 'back' );
 			
 		} else {
 			
@@ -120,7 +118,7 @@ module.exports = (function(){
 				
 			}
 			
-			res.redirect( '/admin' );
+			res.redirect( 'back' );
 			
 		} else {
 			
@@ -187,54 +185,10 @@ module.exports = (function(){
 		
 	};
 	
-	that.login = function( req, res, next ){
-		
-		logger.debug( 'User tries to log in' );
-		if( !req.session.loggedIn && req.body && req.body.user && req.body.password ){
-		    logger.debug( req.body.user + ' ' + req.body.password );
-			adminDatabase.getUser( req.body.user, function( error, password, salt, flags ){
-			    logger.debug( password + ' ' + helpers_password.createSaltedPasswordHash( req.body.password, salt ) );
-				if( !error && password && salt &&
-					password === helpers_password.createSaltedPasswordHash( req.body.password, salt ) ){
-					
-					logger.debug( 'User', req.body.user, 'logged in' );
-					req.session.loggedIn = true;
-					res.redirect( 'back' );
-			
-				} else {
-					
-					logger.debug( 'User', req.body.user, 'could not be authenticated' );
-					res.redirect( 'back' );
-					
-				}
-				
-			} );
-			
-		} else {
-			
-			res.redirect( 'back' );
-			
-		}
-	};
+	that.routes.user.login = route_user_authenticate.login;
+	that.routes.user.logout = route_user_authenticate.logout;
 	
-	that.logout = function( req, res, next ){
-		
-		
-		if( req.session.loggedIn ){
-		
-			req.session.loggedIn = false;
-		
-		}
-		
-		res.redirect( '/' );
-			
-	};
-	
-	that.error404 = function( req, res, next ){
-		
-		res.render('error', { status: 404, url: req.url } );
-  
-	};
+	that.routes.error404 = route_error.error404;
 	
 	return that;
 	
