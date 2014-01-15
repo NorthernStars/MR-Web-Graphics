@@ -21,7 +21,10 @@ module.exports = (function(){
                     cookie: {
                         maxAge: 1000 * 60 * 20 // 20 minuites lifetime
                     }
-                }
+                },
+    			server: {
+    				port: 3000
+    			}
             },
             logging: {
                 config: 'log_configuration.json'

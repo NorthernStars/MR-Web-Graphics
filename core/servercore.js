@@ -72,4 +72,4 @@ app.use( middleWare.routes.error404 );
 
 // start server
 
-server.listen(3000);
+server.listen( settings.core.server.port );
