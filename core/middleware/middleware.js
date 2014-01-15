@@ -1,241 +1,64 @@
 /**
- *  
+ * Middleware administration(singleton)
+ * helperfunctions and routes
+ * 
+ * @author Hannes Eilers
+ * @author Eike Petersen
+ * 
+ * @version Beta 1.0
  */
+"use strict";
 
 //logging 
 var logging = require( process.cwd() + '/core/logging/logging.js' );
 var logger = logging.getLogger( 'middleware' );
 
-var adminDatabase = require( './../persistence/database' );
 var mrServerConnection = require( './../network/mrserverconnection' );
 
-var helpers_password = require( process.cwd() + '/core/middleware/helper/security_password.js' );
+var route_root = require( process.cwd() + '/core/middleware/routes/root.js' );
+var route_error = require( process.cwd() + '/core/middleware/routes/error.js' );
+
+var route_user_authenticate = require( process.cwd() + '/core/middleware/routes/user/authenticate.js' );
+
+var route_games_administration = require( process.cwd() + '/core/middleware/routes/games/administrate.js' );
+var route_games_watching = require( process.cwd() + '/core/middleware/routes/games/watch.js' );
 
 module.exports = (function(){
-	
-	adminDatabase.setDatabase( './admin.db' );
-	
-	var that = {};
-	var  _listOfGames = {};
-	
-	that.registerGamesList = function( listOfGames ){
-		
-		_listOfGames = listOfGames;
-		
-	};
-	
-	that.startPage = function( req, res, next ){
-		
-		res.render('index', { title: 'Mixed Reality Web Graphics', main: true, isAuthenticated: req.session.loggedIn, joinedGames: req.session.joinedGames });
-		
-	};
-	
-	that.adminPage = function( req, res, next ){
-		
-		if( req.session.loggedIn ){
-			
-			res.render('admin', { title: 'Administration', admin: true, isAuthenticated: req.session.loggedIn, listOfGames: _listOfGames, joinedGames: req.session.joinedGames } );
-		
-		} else {
-			
-			res.redirect( '/' );
-			
-		}
-	
-	};
-	
-	that.adminDisconnectGame = function( req, res, next ){
-		
-		if( req.session.loggedIn ){
-			
-			if( req.params.game && _listOfGames[req.params.game] && _listOfGames[req.params.game].connected() ){
-				
-				_listOfGames[req.params.game].disconnect();
-				
-			}
+    
+    var that = {};
+    that.routes = {};
+    that.routes.user = {};
+    that.routes.games = {};
 
-			res.redirect( '/admin' );
-			
-		} else {
-			
-			res.redirect( 'back' );
-			
-		}
-	
-	};
-	
-	that.adminConnectGame = function( req, res, next ){
-		
-		if( req.session.loggedIn ){
-
-			if( req.params.game && _listOfGames[req.params.game] && !_listOfGames[req.params.game].connected() ){
-				
-				_listOfGames[req.params.game].connect();
-				
-			}
-
-			res.redirect( '/admin' );
-			
-		} else {
-			
-			res.redirect( 'back' );
-			
-		}
-	
-	};
-	
-	that.adminRemoveGame = function( req, res, next ){
-		
-		if( req.session.loggedIn ){
-
-			if( req.params.game && _listOfGames[req.params.game]){
-				
-				if( _listOfGames[req.params.game].connected() ){
-					
-					_listOfGames[req.params.game].disconnect();
-					
-				}
-				//TODO: close all websockets
-				delete _listOfGames[req.params.game];
-				
-			}
-			
-			res.redirect( '/admin' );
-			
-		} else {
-			
-			res.redirect( 'back' );
-			
-		}
-	
-	};
-	
-	that.adminAddGame = function( req, res, next ){
-		
-		if( req.session.loggedIn ){
-
-			if( req.body && req.body.name && req.body.host && req.body.port && !_listOfGames[req.body.name] ){
-				
-				_listOfGames[req.body.name] = mrServerConnection({ connectionname: req.body.name, mrserverip: req.body.host, mrserverport: req.body.port });
-				
-			}
-			
-			res.redirect( '/admin' );
-			
-		} else {
-			
-			res.redirect( 'back' );
-			
-		}
-	
-	};
-	
-	that.gamesPage = function( req, res, next ){
-		
-		res.render('games', { title: 'List of games', games: true, isAuthenticated: req.session.loggedIn, listOfGames: _listOfGames, joinedGames: req.session.joinedGames } );
-		
-	};
-	
-	that.gamesJoin = function( req, res, next ){
-		
-		if( req.params.game && _listOfGames[req.params.game]){
-			
-			if( !req.session.joinedGames ){
-				
-				req.session.joinedGames = {};
-				
-			}
-			req.session.joinedGames[req.params.game] = req.params.game;
-			
-			res.redirect( '/games/' + req.params.game );
-			
-		} else {
-			
-			res.redirect( 'back' );
-			
-		}
-		
-	};
-	
-	that.gamesLeave = function( req, res, next ){
-		
-		if( req.params.game && _listOfGames[req.params.game]){
-			
-			delete req.session.joinedGames[req.params.game];
-			
-			res.redirect( '/games' );
-			
-		} else {
-			
-			res.redirect( 'back' );
-			
-		}
-		
-	};
-	
-	that.watchGame = function( req, res, next ){
-		
-		if( req.params.game && _listOfGames[req.params.game]){
-			
-			res.render('game', { title: req.params.game, game: req.params.game, isAuthenticated: req.session.loggedIn, joinedGames: req.session.joinedGames } );
-			
-		} else {
-			
-			res.redirect( 'back' );
-			
-		}
-		
-	};
-	
-	that.login = function( req, res, next ){
-		
-		logger.debug( 'User tries to log in' );
-		if( !req.session.loggedIn && req.body && req.body.user && req.body.password ){
-		    logger.debug( req.body.user + ' ' + req.body.password );
-			adminDatabase.getUser( req.body.user, function( error, password, salt, flags ){
-			    logger.debug( password + ' ' + helpers_password.createSaltedPasswordHash( req.body.password, salt ) );
-				if( !error && password && salt &&
-					password === helpers_password.createSaltedPasswordHash( req.body.password, salt ) ){
-					
-					logger.debug( 'User', req.body.user, 'logged in' );
-					req.session.loggedIn = true;
-					res.redirect( 'back' );
-			
-				} else {
-					
-					logger.debug( 'User', req.body.user, 'could not be authenticated' );
-					res.redirect( 'back' );
-					
-				}
-				
-			} );
-			
-		} else {
-			
-			res.redirect( 'back' );
-			
-		}
-	};
-	
-	that.logout = function( req, res, next ){
-		
-		
-		if( req.session.loggedIn ){
-		
-			req.session.loggedIn = false;
-		
-		}
-		
-		res.redirect( '/' );
-			
-	};
-	
-	that.error404 = function( req, res, next ){
-		
-		res.render('error', { status: 404, url: req.url } );
-  
-	};
-	
-	return that;
-	
+    /** 
+     * Registers the 'global' list of games(mrserverconnection) with the needed routes
+     * 
+     * @param {list of mrserverconnection} the 'global' gameslist
+     */
+    that.registerGamesList = function( listOfGames ){
+        
+        route_games_administration.registerGamesList( listOfGames );
+        route_games_watching.registerGamesList( listOfGames );
+        
+    };
+    
+    that.routes.startPage = route_root.startPage;
+    that.routes.error404 = route_error.error404;
+    
+    that.routes.games.adminPage = route_games_administration.adminPage;
+    that.routes.games.disconnectGame = route_games_administration.disconnectGame;
+    that.routes.games.connectGame = route_games_administration.connectGame;
+    that.routes.games.removeGame = route_games_administration.removeGame;
+    that.routes.games.addGame = route_games_administration.addGame;
+    
+    that.routes.games.gamesPage = route_games_watching.gamesPage;
+    that.routes.games.loinGame = route_games_watching.joinGame;
+    that.routes.games.leaveGame = route_games_watching.leaveGame;
+    that.routes.games.watchGame = route_games_watching.watchGame;
+    
+    that.routes.user.login = route_user_authenticate.login;
+    that.routes.user.logout = route_user_authenticate.logout;
+    
+    return that;
+    
 }());

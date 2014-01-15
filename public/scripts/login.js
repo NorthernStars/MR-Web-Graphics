@@ -4,7 +4,7 @@ var onclickmenueLogin = function () {
 
 var onclickmenueLogout = function () {
 	
-	post_to_url( '/logout' );
+	post_to_url( '/user/logout' );
 	
 };
 
@@ -19,7 +19,7 @@ var onclickloginSubmit = function () {
 	var pw = document.getElementById('loginPassword').value;
 	document.getElementById('login').style.visibility='hidden';
 	
-	post_to_url( '/login', { user: usr, password: pw });
+	post_to_url( '/user/login', { user: usr, password: pw });
 };
 
 var post_to_url = function( path, params, method ) {

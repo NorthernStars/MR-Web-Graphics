@@ -25,7 +25,7 @@ div(id="contentliquid")
 									| Status = 
 									= listOfGames[game].getGameStatus()
 								-	if( listOfGames[game].connected() )
-									span( class="button" onclick='post_to_url( "/admin/games/disconnect/' + listOfGames[game].getName() + '" , {} )' ) Disconnect
+									span( class="button" onclick='post_to_url( "/games/admin/disconnect/' + listOfGames[game].getName() + '" , {} )' ) Disconnect
 								-	else
-									span(class="button" onclick='post_to_url( "/admin/games/connect/' + listOfGames[game].getName() + '" , {} )' ) Connect
-								span(class="button" onclick='post_to_url( "/admin/games/remove/' + listOfGames[game].getName() + '" , {} )' ) Remove
+									span(class="button" onclick='post_to_url( "/games/admin/connect/' + listOfGames[game].getName() + '" , {} )' ) Connect
+								span(class="button" onclick='post_to_url( "/games/admin/remove/' + listOfGames[game].getName() + '" , {} )' ) Remove

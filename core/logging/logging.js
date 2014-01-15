@@ -10,8 +10,10 @@
  */
 "use strict";
 
+var settings = require( process.cwd() + '/settings.js' );
+
 var log4js = require( 'log4js' );
-log4js.configure( 'log_configuration.json' );
+log4js.configure( settings.logging.config );
 var logger = log4js.getLogger( 'logging' );
 
 module.exports = (function(){
