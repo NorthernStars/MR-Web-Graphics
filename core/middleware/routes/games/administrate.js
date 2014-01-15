@@ -19,6 +19,11 @@ module.exports = (function(){
     
     var _listOfGames = {};
     
+    /** 
+     * Registers the 'global' list of games(mrserverconnection) with this module
+     * 
+     * @param {list of mrserverconnection} the 'global' gameslist
+     */
     that.registerGamesList = function( listOfGames ){
         
         _listOfGames = listOfGames;
@@ -26,8 +31,8 @@ module.exports = (function(){
     };
     
     /** 
-     * Tries to authenticate the user
-     * after successful or unsuccessful authentication the user is show his orgin_page
+     * Shows the administration-page for games.
+     * User needs right privileges to access site.
      * 
      * @param needs the request, response and next objects of express
      */
@@ -45,6 +50,11 @@ module.exports = (function(){
     
     };
     
+    /** 
+     * Tries to disconnect the requested game from its gameserver
+     * 
+     * @param needs the request, response and next objects of express
+     */
     that.disconnectGame = function( req, res, next ){
         
         if( req.session.loggedIn ){
@@ -65,6 +75,11 @@ module.exports = (function(){
     
     };
     
+    /** 
+     * Tries to connect the requested game to its gameserver
+     * 
+     * @param needs the request, response and next objects of express
+     */
     that.connectGame = function( req, res, next ){
         
         if( req.session.loggedIn ){
@@ -85,6 +100,11 @@ module.exports = (function(){
     
     };
     
+    /** 
+     * Removes the requested game from it the gamelist
+     * 
+     * @param needs the request, response and next objects of express
+     */
     that.removeGame = function( req, res, next ){
         
         if( req.session.loggedIn ){
@@ -111,6 +131,11 @@ module.exports = (function(){
     
     };
     
+    /** 
+     * Adds the game to the gamelist
+     * 
+     * @param needs the request, response and next objects of express
+     */
     that.addGame = function( req, res, next ){
         
         if( req.session.loggedIn ){

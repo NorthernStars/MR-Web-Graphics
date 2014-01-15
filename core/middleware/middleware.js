@@ -14,6 +14,7 @@ var route_error = require( process.cwd() + '/core/middleware/routes/error.js' );
 var route_user_authenticate = require( process.cwd() + '/core/middleware/routes/user/authenticate.js' );
 
 var route_games_administration = require( process.cwd() + '/core/middleware/routes/games/administrate.js' );
+var route_games_watching = require( process.cwd() + '/core/middleware/routes/games/watch.js' );
 
 module.exports = (function(){
 	
@@ -25,7 +26,8 @@ module.exports = (function(){
 	that.registerGamesList = function( listOfGames ){
 		
 	    route_games_administration.registerGamesList( listOfGames );
-		
+	    route_games_watching.registerGamesList( listOfGames );
+        
 	};
 	
 	that.routes.startPage = route_root.startPage;
@@ -37,62 +39,10 @@ module.exports = (function(){
 	that.routes.games.removeGame = route_games_administration.removeGame;
 	that.routes.games.addGame = route_games_administration.addGame;
 	
-	that.gamesPage = function( req, res, next ){
-		
-		res.render('games', { title: 'List of games', games: true, isAuthenticated: req.session.loggedIn, listOfGames: _listOfGames, joinedGames: req.session.joinedGames } );
-		
-	};
-	
-	that.gamesJoin = function( req, res, next ){
-		
-		if( req.params.game && _listOfGames[req.params.game]){
-			
-			if( !req.session.joinedGames ){
-				
-				req.session.joinedGames = {};
-				
-			}
-			req.session.joinedGames[req.params.game] = req.params.game;
-			
-			res.redirect( '/games/' + req.params.game );
-			
-		} else {
-			
-			res.redirect( 'back' );
-			
-		}
-		
-	};
-	
-	that.gamesLeave = function( req, res, next ){
-		
-		if( req.params.game && _listOfGames[req.params.game]){
-			
-			delete req.session.joinedGames[req.params.game];
-			
-			res.redirect( '/games' );
-			
-		} else {
-			
-			res.redirect( 'back' );
-			
-		}
-		
-	};
-	
-	that.watchGame = function( req, res, next ){
-		
-		if( req.params.game && _listOfGames[req.params.game]){
-			
-			res.render('game', { title: req.params.game, game: req.params.game, isAuthenticated: req.session.loggedIn, joinedGames: req.session.joinedGames } );
-			
-		} else {
-			
-			res.redirect( 'back' );
-			
-		}
-		
-	};
+	that.routes.games.gamesPage = route_games_watching.gamesPage;
+	that.routes.games.loinGame = route_games_watching.joinGame;
+	that.routes.games.leaveGame = route_games_watching.leaveGame;
+	that.routes.games.watchGame = route_games_watching.watchGame;
 	
 	that.routes.user.login = route_user_authenticate.login;
 	that.routes.user.logout = route_user_authenticate.logout;

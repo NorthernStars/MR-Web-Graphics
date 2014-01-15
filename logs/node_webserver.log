@@ -419,3 +419,20 @@
 [2014-01-14 23:57:47.531] [DEBUG] [default] - Listening for packet from mrserver at 0.0.0.0:60208
 [2014-01-14 23:59:18.014] [DEBUG] [default] - Listening for packet from mrserver at 0.0.0.0:60209
 [2014-01-14 23:59:18.158] [DEBUG] [default] - Connection acknowleged by defaultserver
+[2014-01-15 08:12:10.020] [DEBUG] logging - Created logger "middleware"
+[2014-01-15 08:12:10.144] [DEBUG] logging - Created logger "routes"
+[2014-01-15 08:12:10.144] [INFO] routes - Created root routes
+[2014-01-15 08:12:10.144] [DEBUG] logging - Created logger "routes"
+[2014-01-15 08:12:10.144] [INFO] routes - Created error routes
+[2014-01-15 08:12:10.144] [DEBUG] logging - Created logger "routes"
+[2014-01-15 08:12:10.160] [DEBUG] logging - Created logger "database"
+[2014-01-15 08:12:10.160] [DEBUG] database - Loading sqlite3 module
+[2014-01-15 08:12:10.207] [DEBUG] database - Loading fs module
+[2014-01-15 08:12:10.222] [DEBUG] database - Opening database file ./admin.db
+[2014-01-15 08:12:10.222] [DEBUG] database - Prepareing statements
+[2014-01-15 08:12:10.222] [INFO] routes - Created user authentication routes
+[2014-01-15 08:12:10.222] [DEBUG] logging - Created logger "routes"
+[2014-01-15 08:12:10.222] [INFO] routes - Created game administration routes
+[2014-01-15 08:12:10.238] [DEBUG] logging - Created logger "routes"
+[2014-01-15 08:12:10.238] [INFO] routes - Created game watch routes
+[2014-01-15 08:12:10.378] [DEBUG] logging - Created logger "core"

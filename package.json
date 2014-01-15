@@ -15,12 +15,11 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-      "express": "3.4.7",
-      "websocket.io": "0.2.1",
-      "log4js": "0.6.9",
-      "sqlite3": "2.1.19",
-      "xml2js": "0.4.0",
-      "jade": "0.35.0",
-	  "connect-redis": "1.4.6"
+      "express": "3.4.x",
+      "websocket.io": "0.2.x",
+      "log4js": "0.6.x",
+      "sqlite3": "2.1.x",
+      "xml2js": "0.4.x",
+      "jade": "0.35.x"
   }
 }

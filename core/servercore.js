@@ -7,7 +7,6 @@
  * @version 0.1
  */
 
-
 var middleWare = require( './middleware/middleware' );
 var webSockets = require( './network/websockets' );
 
@@ -15,11 +14,12 @@ var logging = require( process.cwd() + '/core/logging/logging.js' );
 var logger = logging.getLogger( 'core' );
 
 var express = require('express');
-var RedisStore = require('connect-redis')(express);
 var http = require('http');
 
 var app = express();
 var server = http.createServer(app);
+
+// initalise needed 'globals'
 
 var listOfGames = {};
 
@@ -57,14 +57,17 @@ app.post('/games/admin/remove/:game', middleWare.routes.games.removeGame );
 app.post('/games/admin/add', middleWare.routes.games.addGame );
 app.get('/games/admin', middleWare.routes.games.adminPage );
 
-app.post('/games/leave/:game', middleWare.gamesLeave );
-app.post('/games/join/:game', middleWare.gamesJoin );
-app.get('/games', middleWare.gamesPage );
+app.post('/games/leave/:game', middleWare.routes.games.leaveGame );
+app.post('/games/join/:game', middleWare.routes.games.loinGame );
+app.post('/games', middleWare.routes.games.gamesPage );
+app.get('/games', middleWare.routes.games.gamesPage );
 
-app.post('/games/:game', middleWare.watchGame );
-app.get('/games/:game', middleWare.watchGame );
+app.post('/games/:game', middleWare.routes.games.watchGame );
+app.get('/games/:game', middleWare.routes.games.watchGame );
 
 app.get('/', middleWare.routes.startPage );
 app.use( middleWare.routes.error404 );
+
+// start server
 
 server.listen(3000);
