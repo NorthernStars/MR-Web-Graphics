@@ -7,8 +7,10 @@
  * @version 0.1
  */
 
-var middleWare = require( './middleware/middleware' );
-var webSockets = require( './network/websockets' );
+var settings = require( process.cwd() + '/settings.js' );
+
+var middleWare = require( process.cwd() + '/core/middleware/middleware.js' );
+var webSockets = require( process.cwd() + '/core/network/websockets.js' );
 
 var logging = require( process.cwd() + '/core/logging/logging.js' );
 var logger = logging.getLogger( 'core' );
@@ -35,10 +37,10 @@ app.configure(function(){
     app.set( 'view engine', 'jade' );
     app.use( express.urlencoded() );
     app.use( express.cookieParser() );
-    app.use( express.session( { key: 'session', //TODO: real sessiondb
-        secret: 'SEKR37',
+    app.use( express.session( { key: settings.core.session.key, //TODO: real sessiondb
+        secret: settings.core.session.secret,
         cookie: {
-            maxAge  :  60 * 20 * 1000 // 20 minuites lifetime
+            maxAge  :  settings.core.session.cookie.maxAge // 20 minites lifetime
         } } ) );
     app.use( app.router );
     

@@ -1,6 +1,13 @@
 /**
- *  
+ * Middleware administration(singleton)
+ * helperfunctions and routes
+ * 
+ * @author Hannes Eilers
+ * @author Eike Petersen
+ * 
+ * @version Beta 1.0
  */
+"use strict";
 
 //logging 
 var logging = require( process.cwd() + '/core/logging/logging.js' );
@@ -17,36 +24,41 @@ var route_games_administration = require( process.cwd() + '/core/middleware/rout
 var route_games_watching = require( process.cwd() + '/core/middleware/routes/games/watch.js' );
 
 module.exports = (function(){
-	
-	var that = {};
-	that.routes = {};
+    
+    var that = {};
+    that.routes = {};
     that.routes.user = {};
     that.routes.games = {};
-	
-	that.registerGamesList = function( listOfGames ){
-		
-	    route_games_administration.registerGamesList( listOfGames );
-	    route_games_watching.registerGamesList( listOfGames );
+
+    /** 
+     * Registers the 'global' list of games(mrserverconnection) with the needed routes
+     * 
+     * @param {list of mrserverconnection} the 'global' gameslist
+     */
+    that.registerGamesList = function( listOfGames ){
         
-	};
-	
-	that.routes.startPage = route_root.startPage;
+        route_games_administration.registerGamesList( listOfGames );
+        route_games_watching.registerGamesList( listOfGames );
+        
+    };
+    
+    that.routes.startPage = route_root.startPage;
     that.routes.error404 = route_error.error404;
-	
-	that.routes.games.adminPage = route_games_administration.adminPage;
-	that.routes.games.disconnectGame = route_games_administration.disconnectGame;
-	that.routes.games.connectGame = route_games_administration.connectGame;
-	that.routes.games.removeGame = route_games_administration.removeGame;
-	that.routes.games.addGame = route_games_administration.addGame;
-	
-	that.routes.games.gamesPage = route_games_watching.gamesPage;
-	that.routes.games.loinGame = route_games_watching.joinGame;
-	that.routes.games.leaveGame = route_games_watching.leaveGame;
-	that.routes.games.watchGame = route_games_watching.watchGame;
-	
-	that.routes.user.login = route_user_authenticate.login;
-	that.routes.user.logout = route_user_authenticate.logout;
-	
-	return that;
-	
+    
+    that.routes.games.adminPage = route_games_administration.adminPage;
+    that.routes.games.disconnectGame = route_games_administration.disconnectGame;
+    that.routes.games.connectGame = route_games_administration.connectGame;
+    that.routes.games.removeGame = route_games_administration.removeGame;
+    that.routes.games.addGame = route_games_administration.addGame;
+    
+    that.routes.games.gamesPage = route_games_watching.gamesPage;
+    that.routes.games.loinGame = route_games_watching.joinGame;
+    that.routes.games.leaveGame = route_games_watching.leaveGame;
+    that.routes.games.watchGame = route_games_watching.watchGame;
+    
+    that.routes.user.login = route_user_authenticate.login;
+    that.routes.user.logout = route_user_authenticate.logout;
+    
+    return that;
+    
 }());

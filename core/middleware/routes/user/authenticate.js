@@ -8,6 +8,8 @@
  */
 "use strict";
 
+var settings = require( process.cwd() + '/settings.js' );
+
 var logging = require( process.cwd() + '/core/logging/logging.js' );
 var logger = logging.getLogger( 'routes' );
 
@@ -17,7 +19,7 @@ var helpers_password = require( process.cwd() + '/core/middleware/helper/securit
 
 module.exports = (function(){
 
-    userDatabase.initializeDatabase( './admin.db' ); //TODO: config-file
+    userDatabase.initializeDatabase( settings.user.database );
     
     var that = {};
     
