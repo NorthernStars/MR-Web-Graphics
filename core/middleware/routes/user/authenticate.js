@@ -33,19 +33,19 @@ module.exports = (function(){
         
         logger.debug( 'User tries to log in' );
         if( !req.session.loggedIn && req.body && req.body.user && req.body.password ){
-            logger.debug( req.body.user + ' ' + req.body.password );
-            userDatabase.getUser( req.body.user, function( error, password, salt, flags ){
-                logger.debug( password + ' ' + helpers_password.createSaltedPasswordHash( req.body.password, salt ) );
+            
+        	userDatabase.getUser( req.body.user, function( error, password, salt, flags ){
+                
                 if( !error && password && salt &&
                     password === helpers_password.createSaltedPasswordHash( req.body.password, salt ) ){
                     
-                    logger.debug( 'User', req.body.user, 'logged in' );
+                    logger.info( 'User', req.body.user, 'logged in' );
                     req.session.loggedIn = true;
                     res.redirect( 'back' );
             
                 } else {
                     
-                    logger.debug( 'User', req.body.user, 'could not be authenticated' );
+                    logger.info( 'User', req.body.user, 'could not be authenticated' );
                     res.redirect( 'back' );
                     
                 }

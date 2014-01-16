@@ -146,8 +146,6 @@ module.exports = (function(){
                 
             }
             
-            logger.debug( req.session.lastPage );
-            
             res.redirect( '/games/admin' );
             
         } else {

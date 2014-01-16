@@ -31,6 +31,9 @@ module.exports = (function(){
             },
             user:{
                 database: './admin.db'
+            },
+            cache:{
+                lifetime: 1000 * 60 * 20 // 20 minuites lifetime
             }
     };
     

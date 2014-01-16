@@ -44,7 +44,7 @@ app.configure(function(){
         } } ) );
     app.use( app.router );
     
-    app.use( express.static('public') );
+    app.use( express.static( process.cwd() + '/public', { maxAge: settings.core.cache.lifetime }) );
     app.use( middleWare.manifest );
     
 });
