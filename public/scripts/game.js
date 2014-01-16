@@ -27,14 +27,7 @@ function drawPlayer(x, y, angle, name, team){
 	var h = canvas.height;
 	    
     // get player size
-    var pSize = Math.round(h * PLAYER_WIDTH);
-    
-	// save context
-    ctx.save();
-    
-    // translate and rotate context
-    ctx.translate( x, y );
-    ctx.rotate( angle * TO_RADIANS );	
+    var pSize = Math.round(h * PLAYER_WIDTH);	
     
     // draw image
     if( team == TEAM_YELLOW ){
@@ -46,16 +39,51 @@ function drawPlayer(x, y, angle, name, team){
     else{
     	img.src = "/img/playernone.gif";
     }
-    ctx.drawImage( img, -pSize*0.5, -pSize*0.5, pSize, pSize );
     
-    // draw bot name
-    ctx.font = FONT_CFG;
-    ctx.fillStyle = "#555555";
-    ctx.textBaseline = "top"; 
-    ctx.fillText( name, -pSize*0.5, pSize*0.5+3 );
-    
-    // restore context
-    ctx.restore();  
+    // wait for image to load on chrome browsers
+    if( window.navigator.userAgent.indexOf("Chrome") != -1 ){
+    	img.onload = function() {
+	    	// save context
+		    ctx.save();
+		    
+		    // translate and rotate context
+		    ctx.translate( x, y );
+		    ctx.rotate( angle * TO_RADIANS );
+		    
+		    // draw image
+		    ctx.drawImage( img, -pSize*0.5, -pSize*0.5, pSize, pSize );
+		    
+		    // draw bot name
+		    ctx.font = FONT_CFG;
+		    ctx.fillStyle = "#555555";
+		    ctx.textBaseline = "top"; 
+		    ctx.fillText( name, -pSize*0.5, pSize*0.5+3 );
+		    
+		    // restore context
+		    ctx.restore();  
+    	};
+    }
+    // draw directly on firefox and ie
+    else{
+    	// save context
+	    ctx.save();
+	    
+	    // translate and rotate context
+	    ctx.translate( x, y );
+	    ctx.rotate( angle * TO_RADIANS );
+	    
+	    // draw image
+	    ctx.drawImage( img, -pSize*0.5, -pSize*0.5, pSize, pSize );
+	    
+	    // draw bot name
+	    ctx.font = FONT_CFG;
+	    ctx.fillStyle = "#555555";
+	    ctx.textBaseline = "top"; 
+	    ctx.fillText( name, -pSize*0.5, pSize*0.5+3 );
+	    
+	    // restore context
+	    ctx.restore();
+    }
 };
 
 /**
@@ -63,20 +91,38 @@ function drawPlayer(x, y, angle, name, team){
 * @param x	Center-x-position
 * @param y	Center-y-position
 */
-function drawBall(x, y){	
-    // create image object
-    var img = new Image();
-    
-    img.onload = function(x, y, img){
-	 	// get canvas elements
-		var canvas = document.getElementById('game');
-		var ctx = canvas.getContext('2d');
-		var h = canvas.height;
-		    
-	    // get player size
-	    var bSize = Math.round(h * BALL_WIDTH);
+function drawBall(x, y){
+	// get canvas elements
+	var canvas = document.getElementById('game');
+	var ctx = canvas.getContext('2d');
+	var h = canvas.height;
 	    
-		// save context
+    // get player size
+    var bSize = Math.round(h * BALL_WIDTH);
+	
+    // create image object
+    var img = document.createElement('img');
+    img.src = "/img/ball.png";
+    
+    // wait for image to load on chrome browsers
+    if( window.navigator.userAgent.indexOf("Chrome") != -1 ){
+	    img.onload = function() {
+			// save context
+		    ctx.save();
+		    
+		    // translate and rotate context
+		    ctx.translate( x, y );
+		    
+		    // draw image	    
+		    ctx.drawImage( img, -bSize*0.5, -bSize*0.5, bSize, bSize );
+		    
+		    // restore context
+		    ctx.restore();
+	    };
+    }
+    // draw directly on firefox and ie
+    else{
+    	// save context
 	    ctx.save();
 	    
 	    // translate and rotate context
@@ -87,10 +133,19 @@ function drawBall(x, y){
 	    
 	    // restore context
 	    ctx.restore();
-    };
-    
-    img.src = "/img/ball.png";
+    }
+
 };
+
+/**
+ * Draws a ball image
+ * @param ctx
+ * @param img
+ * @param bSize
+ */
+function drawBallImg( ctx, img, bSize){
+	
+}
 
 /**
 * Draws a line
