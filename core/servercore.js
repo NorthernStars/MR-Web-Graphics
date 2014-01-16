@@ -45,6 +45,7 @@ app.configure(function(){
     app.use( app.router );
     
     app.use( express.static('public') );
+    app.use( middleWare.manifest );
     
 });
 

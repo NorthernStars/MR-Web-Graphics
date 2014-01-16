@@ -13,6 +13,7 @@
 var logging = require( process.cwd() + '/core/logging/logging.js' );
 var logger = logging.getLogger( 'middleware' );
 
+var cacheManifest = require('connect-cache-manifest');
 var mrServerConnection = require( './../network/mrserverconnection' );
 
 var route_root = require( process.cwd() + '/core/middleware/routes/root.js' );
@@ -41,6 +42,19 @@ module.exports = (function(){
         route_games_watching.registerGamesList( listOfGames );
         
     };
+    
+    that.manifest = cacheManifest({
+  	  manifestPath: '/application.manifest',
+  	  files: [{
+  		    dir: process.cwd() + '/public/img',
+  		    prefix: '/img/'
+  	  }, {
+  	    dir: process.cwd() + '/public/css',
+  	    prefix: '/css/'
+  	  }],
+  	  networks: ['*'],
+  	  fallbacks: []
+  	});
     
     that.routes.startPage = route_root.startPage;
     that.routes.error404 = route_error.error404;
