@@ -41,6 +41,13 @@ module.exports = (function(){
 				
 			}, 2000 );
 
+			socket.on('error', function ( error ) {
+				
+				logger.error('Error in websocket to ' + socket.theWatchedGame + ': ' + error);
+				socket.close();
+				
+			});
+
 			socket.on('message', function ( message ) {
 				
 				if( !socket.theWatchedGame ){

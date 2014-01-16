@@ -1,2 +1,5 @@
 !.gitignore
+<<<<<<< HEAD
 /node_webserver.log
+=======
+>>>>>>> branch 'master' of https://github.com/NorthernStars/MR-Web-Graphics.git
