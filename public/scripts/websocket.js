@@ -21,7 +21,8 @@ window.onload = function () {
 			
 		} else {
 			
-			document.getElementById('data').innerHTML = env.data;
+			//document.getElementById('data').innerHTML = env.data;
+			updateCanvas(env.data);
 			
 		}
   	

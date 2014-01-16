@@ -4,9 +4,9 @@
 	display: block;
 	position: relative;
 	display: table;
-	width: 100%;
-	height: calc( attr(width) * 2);
-	/*height: calc(90vh - 202px);*/
+	/*width: 100%;*/
+	/*height: calc( attr(width) * 2);*/
+	height: calc(90vh - 202px);
 	border: 1px solid #cccccc;	
 	border-radius: 10px;
 	background: #49b949;

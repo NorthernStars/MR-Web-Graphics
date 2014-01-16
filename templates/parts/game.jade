@@ -2,11 +2,15 @@ div(id="contentliquid")
 	div(id="contentwrap")
 		div(id="content")
 			<!-- CONTENT BEGIN -->
+			div(id="data")
 			div(class="list", id="gameControl")
 				div(class="listEntry")
-					span(class="listEntryElement gameInfoHeader")
+					span(class="listEntryElement gameInfoHeader", id="gameInfoHeader")
 					span(class="button", id="gameStartStop") Start
 					span(class="button", id="gameRequestTimeout") Timeout
 			canvas(class="game", id="game")
-			div(class="list", id="gameInfo")
-			div(id="data")
+			span(id="teamNameYellow", style="display:none")
+				= game.getYellowTeamName()
+			span(id="teamNameBlue", style="display:none")
+				= game.getBlueTeamName()
+			div(class="list", id="gameInfo")			

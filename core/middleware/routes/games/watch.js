@@ -97,7 +97,7 @@ module.exports = (function(){
         
         if( req.params.game && _listOfGames[req.params.game]){
             
-            res.render('game', { title: req.params.game, game: req.params.game, isAuthenticated: req.session.loggedIn, joinedGames: req.session.joinedGames } );
+            res.render('game', { title: req.params.game, isAuthenticated: req.session.loggedIn, joinedGames: req.session.joinedGames, game: _listOfGames[req.params.game] } );
             
         } else {
             
