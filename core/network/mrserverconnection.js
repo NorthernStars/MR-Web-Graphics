@@ -34,8 +34,8 @@ module.exports = function( spec ){
 	
 	spec.connected = false;
 	spec.gamestatus = 'unkown';
-	spec.yellowteamname = 'Team Yellow';
-	spec.blueteamname = 'Team Blue';
+	spec.yellowteamname = spec.yellowteamname || 'Team Yellow';
+	spec.blueteamname = spec.blueteamname || 'Team Blue';
 	
 	// getter
 	

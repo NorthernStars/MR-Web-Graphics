@@ -142,7 +142,8 @@ module.exports = (function(){
 
             if( req.body && req.body.name && req.body.host && req.body.port && !_listOfGames[req.body.name] ){
                 
-                _listOfGames[req.body.name] = mrServerConnection({ connectionname: req.body.name, mrserverip: req.body.host, mrserverport: req.body.port });
+            	logger.debug(req.body.teamyellow + ' ' + req.body.teamblue);
+                _listOfGames[req.body.name] = mrServerConnection({ connectionname: req.body.name, mrserverip: req.body.host, mrserverport: req.body.port, yellowteamname: req.body.teamyellow, blueteamname: req.body.teamblue });
                 
             }
             
