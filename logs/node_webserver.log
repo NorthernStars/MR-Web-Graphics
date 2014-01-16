@@ -1535,3 +1535,107 @@
 [2014-01-16 10:06:07.834] [DEBUG] [default] - Client disconnected
 [2014-01-16 10:06:09.035] [DEBUG] [default] - Client connected
 [2014-01-16 10:06:16.522] [DEBUG] [default] - Client connected
+[2014-01-16 10:12:31.800] [DEBUG] logging - Created logger "middleware"
+[2014-01-16 10:12:31.829] [DEBUG] logging - Created logger "routes"
+[2014-01-16 10:12:31.829] [INFO] routes - Created root routes
+[2014-01-16 10:12:31.830] [DEBUG] logging - Created logger "routes"
+[2014-01-16 10:12:31.830] [INFO] routes - Created error routes
+[2014-01-16 10:12:31.831] [DEBUG] logging - Created logger "routes"
+[2014-01-16 10:12:31.832] [DEBUG] logging - Created logger "database"
+[2014-01-16 10:12:31.832] [DEBUG] database - Loading sqlite3 module
+[2014-01-16 10:12:31.840] [DEBUG] database - Loading fs module
+[2014-01-16 10:12:31.848] [DEBUG] database - Opening database file ./admin.db
+[2014-01-16 10:12:31.848] [DEBUG] database - Prepareing statements
+[2014-01-16 10:12:31.849] [INFO] routes - Created user authentication routes
+[2014-01-16 10:12:31.851] [DEBUG] logging - Created logger "routes"
+[2014-01-16 10:12:31.852] [INFO] routes - Created game administration routes
+[2014-01-16 10:12:31.853] [DEBUG] logging - Created logger "routes"
+[2014-01-16 10:12:31.853] [INFO] routes - Created game watch routes
+[2014-01-16 10:12:31.886] [DEBUG] logging - Created logger "core"
+[2014-01-16 10:12:44.176] [DEBUG] routes - User tries to log in
+[2014-01-16 10:12:44.177] [DEBUG] routes - wert wert
+[2014-01-16 10:12:44.180] [DEBUG] database - Found user wert
+[2014-01-16 10:12:44.181] [DEBUG] routes - 02a98ce519ba321dfe90bd3ca57cf5baf28efbadbcf4ef26d4422bb0f802bed9 02a98ce519ba321dfe90bd3ca57cf5baf28efbadbcf4ef26d4422bb0f802bed9
+[2014-01-16 10:12:44.181] [DEBUG] routes - User wert logged in
+[2014-01-16 10:12:52.356] [DEBUG] [default] - Creating connection NewGame to mrserver at 192.168.178.23 : 9060
+[2014-01-16 10:12:52.359] [DEBUG] routes - undefined
+[2014-01-16 10:12:53.460] [DEBUG] [default] - Listening for packet from mrserver at 0.0.0.0:43331
+[2014-01-16 10:12:53.469] [DEBUG] [default] - Connection acknowleged by defaultserver
+[2014-01-16 10:12:56.434] [DEBUG] [default] - Client connected
+[2014-01-16 10:13:40.701] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:13:41.016] [DEBUG] [default] - Client connected
+[2014-01-16 10:13:56.511] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:13:56.821] [DEBUG] [default] - Client connected
+[2014-01-16 10:18:28.311] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:18:28.621] [DEBUG] [default] - Client connected
+[2014-01-16 10:24:13.355] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:24:13.665] [DEBUG] [default] - Client connected
+[2014-01-16 10:25:23.240] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:25:23.533] [DEBUG] [default] - Client connected
+[2014-01-16 10:25:35.281] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:25:35.708] [DEBUG] [default] - Client connected
+[2014-01-16 10:25:43.803] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:25:44.164] [DEBUG] [default] - Client connected
+[2014-01-16 10:25:48.936] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:25:49.197] [DEBUG] [default] - Client connected
+[2014-01-16 10:25:55.365] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:25:55.704] [DEBUG] [default] - Client connected
+[2014-01-16 10:25:59.202] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:25:59.458] [DEBUG] [default] - Client connected
+[2014-01-16 10:26:17.441] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:26:17.692] [DEBUG] [default] - Client connected
+[2014-01-16 10:26:29.780] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:26:30.064] [DEBUG] [default] - Client connected
+[2014-01-16 10:26:36.659] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:26:36.947] [DEBUG] [default] - Client connected
+[2014-01-16 10:26:41.950] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:26:42.252] [DEBUG] [default] - Client connected
+[2014-01-16 10:27:41.588] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:27:41.925] [DEBUG] [default] - Client connected
+[2014-01-16 10:28:23.322] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:28:23.627] [DEBUG] [default] - Client connected
+[2014-01-16 10:28:33.164] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:28:33.462] [DEBUG] [default] - Client connected
+[2014-01-16 10:30:24.092] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:30:24.388] [DEBUG] [default] - Client connected
+[2014-01-16 10:30:48.728] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:30:49.061] [DEBUG] [default] - Client connected
+[2014-01-16 10:31:49.402] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:31:49.790] [DEBUG] [default] - Client connected
+[2014-01-16 10:32:29.499] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:32:29.825] [DEBUG] [default] - Client connected
+[2014-01-16 10:41:52.532] [DEBUG] logging - Created logger "middleware"
+[2014-01-16 10:41:52.575] [DEBUG] logging - Created logger "routes"
+[2014-01-16 10:41:52.576] [INFO] routes - Created root routes
+[2014-01-16 10:41:52.576] [DEBUG] logging - Created logger "routes"
+[2014-01-16 10:41:52.577] [INFO] routes - Created error routes
+[2014-01-16 10:41:52.579] [DEBUG] logging - Created logger "routes"
+[2014-01-16 10:41:52.580] [DEBUG] logging - Created logger "database"
+[2014-01-16 10:41:52.580] [DEBUG] database - Loading sqlite3 module
+[2014-01-16 10:41:52.592] [DEBUG] database - Loading fs module
+[2014-01-16 10:41:52.600] [DEBUG] database - Opening database file ./admin.db
+[2014-01-16 10:41:52.601] [DEBUG] database - Prepareing statements
+[2014-01-16 10:41:52.601] [INFO] routes - Created user authentication routes
+[2014-01-16 10:41:52.603] [DEBUG] logging - Created logger "routes"
+[2014-01-16 10:41:52.604] [INFO] routes - Created game administration routes
+[2014-01-16 10:41:52.605] [DEBUG] logging - Created logger "routes"
+[2014-01-16 10:41:52.605] [INFO] routes - Created game watch routes
+[2014-01-16 10:41:52.639] [DEBUG] logging - Created logger "core"
+[2014-01-16 10:42:05.697] [DEBUG] routes - User tries to log in
+[2014-01-16 10:42:05.698] [DEBUG] routes - wert wert
+[2014-01-16 10:42:05.700] [DEBUG] database - Found user wert
+[2014-01-16 10:42:05.701] [DEBUG] routes - 02a98ce519ba321dfe90bd3ca57cf5baf28efbadbcf4ef26d4422bb0f802bed9 02a98ce519ba321dfe90bd3ca57cf5baf28efbadbcf4ef26d4422bb0f802bed9
+[2014-01-16 10:42:05.701] [DEBUG] routes - User wert logged in
+[2014-01-16 10:42:15.439] [DEBUG] [default] - Creating connection NewGame to mrserver at 192.168.178.23 : 9060
+[2014-01-16 10:42:15.440] [DEBUG] routes - undefined
+[2014-01-16 10:42:17.154] [DEBUG] [default] - Listening for packet from mrserver at 0.0.0.0:51599
+[2014-01-16 10:42:17.166] [DEBUG] [default] - Connection acknowleged by defaultserver
+[2014-01-16 10:42:20.210] [DEBUG] [default] - Client connected
+[2014-01-16 10:42:39.826] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:42:40.175] [DEBUG] [default] - Client connected
+[2014-01-16 10:42:47.288] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:42:47.604] [DEBUG] [default] - Client connected
+[2014-01-16 10:42:56.700] [DEBUG] [default] - Client connected
+[2014-01-16 10:43:05.887] [DEBUG] [default] - Client disconnected
+[2014-01-16 10:44:05.409] [DEBUG] [default] - Client connected
+[2014-01-16 10:44:28.341] [DEBUG] [default] - Client disconnected

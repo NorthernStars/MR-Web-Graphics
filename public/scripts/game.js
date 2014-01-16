@@ -5,7 +5,7 @@ var PLAYER_WIDTH = 0.05;				// [1/100%]
 var BALL_WIDTH = PLAYER_WIDTH*0.5;		// [1/100%]
 
 var TO_RADIANS = Math.PI/180;
-var FONT_CFG = "normal 14pt Arial";
+var FONT_CFG = "normal 8pt Arial";
 var DOT_WIDTH = 0.0035;
 var LINE_WIDTH = DOT_WIDTH/2;
 
@@ -13,7 +13,7 @@ var LINE_WIDTH = DOT_WIDTH/2;
 * Draws a player marker
 * @param x		Center-x-position
 * @param y		Center-y-position
-* @param angle	Angle ind degree of player
+* @param angle	Angle in degree of player
 * @param name	Name of the player
 * @param team	Team of the player. Could be TEAM_NONE, TEAM_YELLOW or TEAM_BLUE
 */
@@ -236,6 +236,7 @@ function updateCanvas(wdata){
     }
     
     // Parse worlddata
+//    document.getElementById('data').innerHTML = wdata ;
     wdata = JSON.parse(wdata);
     
     // Set game info    
@@ -262,7 +263,6 @@ function updateCanvas(wdata){
     var h = canvas.height;    
     var yScale = 0.75;
 
-    // document.getElementById('data').innerHTML = ;
     // get and draw flags
     var flags = {};
     var i;
@@ -310,9 +310,31 @@ function updateCanvas(wdata){
     drawRectangle( flags['top_right_pole'][0], flags['bottom_right_pole'][1], goalW, goalH, "blue");
     
     // draw player
-//  drawPlayer(0.1*w, 0.3*h, 20, "BOT 0", TEAM_YELLOW);
-//  drawPlayer(0.5*w, 0.6*h, 80, "BOT 1", TEAM_BLUE);
-//  drawPlayer(0.8*w, 0.6*h, 250, "BOT 2", TEAM_NONE);
+    for( i=0; i<wdata.players.length; i++ ){
+    	var player = wdata.players[i];
+    	if( player.pointtype == "player" ){
+    		
+	    	var x = Math.floor( player.position[0].x * w );
+	    	var y = Math.floor( (1-(player.position[0].y / yScale)) * h );
+	    	var angle = -player.orientationangle[0];
+	    	var name = player.nickname[0] + " " + player.id[0];
+	    	var team = player.team[0];
+	    	
+	    	// set team
+	    	if(team == "yellow"){
+	    		team = TEAM_YELLOW;
+	    	}
+	    	else if(team == "blue"){
+	    		team = TEAM_BLUE;
+	    	}
+	    	else{
+	    		team = TEAM_NONE;
+	    	}
+	    	
+	    	drawPlayer(x, y, angle, name, team);
+	    	
+    	}
+    }
     
     // draw ball
     if( wdata.ball[0].pointtype == "ball" ){
