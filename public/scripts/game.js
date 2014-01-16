@@ -66,27 +66,30 @@ function drawPlayer(x, y, angle, name, team){
 function drawBall(x, y){	
     // create image object
     var img = new Image();
-
- 	// get canvas elements
-	var canvas = document.getElementById('game');
-	var ctx = canvas.getContext('2d');
-	var h = canvas.height;
+    
+    img.onload = function(x, y, img){
+	 	// get canvas elements
+		var canvas = document.getElementById('game');
+		var ctx = canvas.getContext('2d');
+		var h = canvas.height;
+		    
+	    // get player size
+	    var bSize = Math.round(h * BALL_WIDTH);
 	    
-    // get player size
-    var bSize = Math.round(h * BALL_WIDTH);
+		// save context
+	    ctx.save();
+	    
+	    // translate and rotate context
+	    ctx.translate( x, y );
+	    
+	    // draw image	    
+	    ctx.drawImage( img, -bSize*0.5, -bSize*0.5, bSize, bSize );
+	    
+	    // restore context
+	    ctx.restore();
+    };
     
-	// save context
-    ctx.save();
-    
-    // translate and rotate context
-    ctx.translate( x, y );
-    
-    // draw image
     img.src = "/img/ball.png";
-    ctx.drawImage( img, -bSize*0.5, -bSize*0.5, bSize, bSize );
-    
-    // restore context
-    ctx.restore();  
 };
 
 /**
