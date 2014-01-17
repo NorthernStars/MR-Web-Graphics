@@ -23,16 +23,14 @@ var botNameData = null;
 * @param team	Team of the player. Could be TEAM_NONE, TEAM_YELLOW or TEAM_BLUE
 */
 var img = document.createElement('img');
-function drawPlayer(x, y, angle, name, team){	        			
-    // create image object
-	
+function drawPlayer(x, y, angle, name, team){	
  	// get canvas elements
 	var h = canvas.height;
 	    
     // get player size
     var pSize = h * PLAYER_WIDTH;	
     
-    // draw image
+    // set image url
     if( team == TEAM_YELLOW ){
     	img.src = "/img/playeryellow.png";
     }
@@ -43,25 +41,15 @@ function drawPlayer(x, y, angle, name, team){
     	img.src = "/img/playernone.png";
     }
     
-    // wait for image to load on chrome browsers
-    if( window.navigator.userAgent.indexOf("Chrome") != -1 ){
-    	img.onload = paintPlayerOnCanvas(img, pSize, x, y, angle, name, team);
-    }
-    // draw directly on firefox and ie
-    else{
-    	paintPlayerOnCanvas(img, pSize, x, y, angle, name, team);
-    }
+    // draw image
+    paintPlayerOnCanvas(img, pSize, x, y, angle, name, team);
 };
 
 function paintPlayerOnCanvas(img, pSize, x, y, angle, name, team) {
 	saveCanvas();
-
-	transformCanvas( x, y, angle );
-    
-	drawImageOnCanvas(img, pSize);
-	
-	drawTextOnCanvas( name, x, y, angle, pSize );
-    
+	transformCanvas( x, y, angle );    
+	drawImageOnCanvas(img, pSize);	
+	drawTextOnCanvas( name, x, y, angle, pSize );    
     restoreCanvas();  
 };
 
@@ -122,8 +110,7 @@ function drawBall(x, y){
     // get player size
     var bSize = Math.round(h * BALL_WIDTH);
 	
-    // create image object
-    var img = document.createElement('img');
+    // set image url
     img.src = "/img/ball.png";
     
     // wait for image to load on chrome browsers
