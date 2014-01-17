@@ -5,9 +5,14 @@ var PLAYER_WIDTH = 0.05;				// [1/100%]
 var BALL_WIDTH = PLAYER_WIDTH*0.5;		// [1/100%]
 
 var TO_RADIANS = Math.PI/180;
-var FONT_CFG = "normal 8pt Arial";
 var DOT_WIDTH = 0.0035;
 var LINE_WIDTH = DOT_WIDTH/2;
+
+var drawed_background = false;
+
+var canvas = null;
+var ctx = null;
+var botNameData = null;
 
 /**
 * Draws a player marker
@@ -17,74 +22,93 @@ var LINE_WIDTH = DOT_WIDTH/2;
 * @param name	Name of the player
 * @param team	Team of the player. Could be TEAM_NONE, TEAM_YELLOW or TEAM_BLUE
 */
+var img = document.createElement('img');
 function drawPlayer(x, y, angle, name, team){	        			
     // create image object
-    var img = new Image();
-
+	
  	// get canvas elements
-	var canvas = document.getElementById('game');
-	var ctx = canvas.getContext('2d');
 	var h = canvas.height;
 	    
     // get player size
-    var pSize = Math.round(h * PLAYER_WIDTH);	
+    var pSize = h * PLAYER_WIDTH;	
     
     // draw image
     if( team == TEAM_YELLOW ){
-    	img.src = "/img/playeryellow.gif";
+    	img.src = "/img/playeryellow.png";
     }
     else if( team == TEAM_BLUE ){
-    	img.src = "/img/playerblue.gif";
+    	img.src = "/img/playerblue.png";
     }
     else{
-    	img.src = "/img/playernone.gif";
+    	img.src = "/img/playernone.png";
     }
     
     // wait for image to load on chrome browsers
     if( window.navigator.userAgent.indexOf("Chrome") != -1 ){
-    	img.onload = function() {
-	    	// save context
-		    ctx.save();
-		    
-		    // translate and rotate context
-		    ctx.translate( x, y );
-		    ctx.rotate( angle * TO_RADIANS );
-		    
-		    // draw image
-		    ctx.drawImage( img, -pSize*0.5, -pSize*0.5, pSize, pSize );
-		    
-		    // draw bot name
-		    ctx.font = FONT_CFG;
-		    ctx.fillStyle = "#555555";
-		    ctx.textBaseline = "top"; 
-		    ctx.fillText( name, -pSize*0.5, pSize*0.5+3 );
-		    
-		    // restore context
-		    ctx.restore();  
-    	};
+    	img.onload = paintPlayerOnCanvas(img, pSize, x, y, angle, name, team);
     }
     // draw directly on firefox and ie
     else{
-    	// save context
-	    ctx.save();
-	    
-	    // translate and rotate context
-	    ctx.translate( x, y );
-	    ctx.rotate( angle * TO_RADIANS );
-	    
-	    // draw image
-	    ctx.drawImage( img, -pSize*0.5, -pSize*0.5, pSize, pSize );
-	    
-	    // draw bot name
-	    ctx.font = FONT_CFG;
-	    ctx.fillStyle = "#555555";
-	    ctx.textBaseline = "top"; 
-	    ctx.fillText( name, -pSize*0.5, pSize*0.5+3 );
-	    
-	    // restore context
-	    ctx.restore();
+    	paintPlayerOnCanvas(img, pSize, x, y, angle, name, team);
     }
 };
+
+function paintPlayerOnCanvas(img, pSize, x, y, angle, name, team) {
+	saveCanvas();
+
+	transformCanvas( x, y, angle );
+    
+	drawImageOnCanvas(img, pSize);
+	
+	drawTextOnCanvas( name, x, y, angle, pSize );
+    
+    restoreCanvas();  
+};
+
+function drawTextOnCanvas( name, x, y, angle, pSize ){
+	
+	// get canvas offset
+	var offset = canvas.getBoundingClientRect();
+	x = offset.left + x;
+	y = offset.top + y;
+	
+    // draw bot name
+	var txt = document.createElement('p');
+	txt.className = 'botNameTxt';
+	txt.innerHTML =  name;
+	txt.style.top = (y + pSize*0.5 + 3) + "px";
+	txt.style.left = (x - pSize*0.5) + "px";
+	//txt.style.transform = "rotate("+angle+"deg)";
+	//txt.style['transform-origin'] = x + " " + y;
+	
+	botNameData.appendChild(txt);
+	
+}
+
+function drawImageOnCanvas( img, pSize ){
+	
+	// draw image
+    ctx.drawImage( img, -pSize*0.5, -pSize*0.5, pSize, pSize );
+    
+}
+
+function transformCanvas( x, y, angle ){
+    
+    // translate and rotate context
+    ctx.translate( x, y );
+    ctx.rotate( angle * TO_RADIANS );
+    
+}
+
+function saveCanvas(){
+	// save context
+    ctx.save();
+}
+
+function restoreCanvas(){
+	// restore context
+    ctx.restore();
+}
 
 /**
 * Draws the ball image
@@ -93,8 +117,6 @@ function drawPlayer(x, y, angle, name, team){
 */
 function drawBall(x, y){
 	// get canvas elements
-	var canvas = document.getElementById('game');
-	var ctx = canvas.getContext('2d');
 	var h = canvas.height;
 	    
     // get player size
@@ -154,8 +176,6 @@ function drawBallImg( ctx, img, bSize){
 */
 function drawLine(start, end){
 	// get canvas elements
-    var canvas = document.getElementById('game');
-    var ctx = canvas.getContext('2d');
     var h = canvas.height;
     
  	// drawing line
@@ -177,8 +197,6 @@ function drawLine(start, end){
 */
 function drawArc(x, y, radius){
 	// get canvas elements
-    var canvas = document.getElementById('game');
-    var ctx = canvas.getContext('2d');
     var h = canvas.height;
     
     ctx.beginPath();
@@ -205,8 +223,6 @@ function drawArc(x, y, radius){
 */
 function drawRectangle(x, y, w, h, color){
 	// get canvas elements
-    var canvas = document.getElementById('game');
-    var ctx = canvas.getContext('2d');
     
     if(!color){
     	color = "gray";
@@ -240,21 +256,19 @@ function setGameInfo(info){
 * Clears canvas
 */
 function clearCanvas(){
-	// get canvas elements
-    var canvas = document.getElementById('game');
-    var ctx = canvas.getContext('2d');
-    
     // clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);	        			
+    ctx.clearRect(0, 0, canvas.width, canvas.height);	
+    
+    // clear bot names
+    if(botNameData){
+    	botNameData.innerHTML = "";
+    }
 }
 
 /**
 * Updates size of canvas
-* @return Array (w,h) of new canvas size
 */
 function updateCanvasSize(){
-	// get canvas elements
-    var canvas = document.getElementById('game');
     
     // update canvas size
     var maxW = document.getElementById('gameInfoHeader').scrollWidth;
@@ -269,11 +283,10 @@ function updateCanvasSize(){
     	h = maxH;
     	w = Math.floor( maxH*(1/0.75) );
     }
-    
+   
     canvas.width = w;
     canvas.height = h;
-    
-    return new Array(w, h);
+ 
 }
 
 function pad(a,b){
@@ -286,11 +299,26 @@ function pad(a,b){
 * @return True if successfull updated
 */
 function updateCanvas(wdata){
-	
-	
-	var canvas = document.getElementById('game');
+
     if(!canvas){
-    	return false;
+    	canvas = document.getElementById('game');
+    	if(!canvas){
+    		return false;
+    	}
+    }
+    
+    if(!ctx){
+    	ctx = canvas.getContext('2d');
+    	if(!ctx){
+    		return false;
+    	}
+    }
+    
+    if(!botNameData){
+    	botNameData = document.getElementById('data');
+    	if(!botNameData){
+    		return false;
+    	}
     }
     
     // Parse worlddata
@@ -301,10 +329,10 @@ function updateCanvas(wdata){
     var time = "00:00";
     var gameinfo = "";
     if( wdata.time ){
-	    var timestamp = Math.round(wdata.time);    
+	    var timestamp = Math.floor(wdata.time);    
 	    var min = Math.floor(timestamp / 60);
-	    var sec = Math.round(timestamp - min*60);
-	    time = pad(min, 2) + ":" + pad(sec, 2);
+	    var sec = timestamp % 60;
+	    time = min + ":" + pad(sec, 2);
     }
     
     if( wdata.score ){

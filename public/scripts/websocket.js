@@ -3,7 +3,7 @@ var open = false
 
 window.onload = function () {
     // create socket
-	host = document.getElementById('serverHost').innerHTML;
+	var host = document.getElementById('serverHost').innerHTML;
 	var ws = new WebSocket('ws://'+host);
 	
 	ws.onopen = function () {

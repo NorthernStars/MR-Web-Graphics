@@ -25,7 +25,7 @@ module.exports = (function(){
     			server: {
     				port: 3000,
     				websocket: {
-    					ip: 'localhost',
+    					ip: '192.168.178.21',
     					port: '3000'
     				}
     			},

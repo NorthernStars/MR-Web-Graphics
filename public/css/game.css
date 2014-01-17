@@ -34,3 +34,9 @@
 	width: 2px;
 	width: 2px;
 }
+
+.botNameTxt{
+	position: absolute;
+	font-size: 8pt;
+	z-index: 1;
+}
