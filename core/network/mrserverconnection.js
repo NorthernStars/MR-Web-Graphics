@@ -31,6 +31,7 @@ module.exports = function( spec ){
 	var toServer = null;
 	var lastWorldData = {};
 	var allListeners = [];
+	var sendToListenerTimer = 0;
 	
 	spec.connected = false;
 	spec.gamestatus = 'unkown';
@@ -223,9 +224,18 @@ module.exports = function( spec ){
 			
 				var worldDataInJSON = JSON.stringify( worldData.WorldData );
 				
-				for( var i = 0; i < allListeners.length; i += 1 ){
+				logger.debug();
+				var currentTime = new Date().getTime();
+
+				if( sendToListenerTimer + 100 <= currentTime ){
 					
-					allListeners[i].send( worldDataInJSON );
+					sendToListenerTimer = currentTime;
+					
+					for( var i = 0; i < allListeners.length; i += 1 ){
+						
+						allListeners[i].send( worldDataInJSON );
+						
+					}
 					
 				}
 				
