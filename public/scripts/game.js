@@ -113,37 +113,17 @@ function drawBall(x, y){
     // set image url
     img.src = "/img/ball.png";
     
-    // wait for image to load on chrome browsers
-    if( window.navigator.userAgent.indexOf("Chrome") != -1 ){
-	    img.onload = function() {
-			// save context
-		    ctx.save();
-		    
-		    // translate and rotate context
-		    ctx.translate( x, y );
-		    
-		    // draw image	    
-		    ctx.drawImage( img, -bSize*0.5, -bSize*0.5, bSize, bSize );
-		    
-		    // restore context
-		    ctx.restore();
-	    };
-    }
-    // draw directly on firefox and ie
-    else{
-    	// save context
-	    ctx.save();
-	    
-	    // translate and rotate context
-	    ctx.translate( x, y );
-	    
-	    // draw image	    
-	    ctx.drawImage( img, -bSize*0.5, -bSize*0.5, bSize, bSize );
-	    
-	    // restore context
-	    ctx.restore();
-    }
-
+    // save context
+    ctx.save();
+    
+    // translate and rotate context
+    ctx.translate( x, y );
+    
+    // draw image	    
+    ctx.drawImage( img, -bSize*0.5, -bSize*0.5, bSize, bSize );
+    
+    // restore context
+    ctx.restore();
 };
 
 /**
