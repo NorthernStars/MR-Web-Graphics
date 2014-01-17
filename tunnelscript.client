@@ -1,0 +1,5 @@
+#!/bin/bash
+rm /tmp/fifo
+pkill -9 netcat
+mkfifo /tmp/fifo
+netcat -l -u -p $2 < /tmp/fifo | nc localhost $1 > /tmp/fifo &
