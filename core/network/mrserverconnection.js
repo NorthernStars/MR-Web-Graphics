@@ -34,7 +34,7 @@ module.exports = function( spec ){
 	var sendToListenerTimer = 0;
 	
 	spec.connected = false;
-	spec.gamestatus = 'unkown';
+	spec.gamestatus = 'unknown';
 	spec.yellowteamname = spec.yellowteamname || 'Team Yellow';
 	spec.blueteamname = spec.blueteamname || 'Team Blue';
 	
