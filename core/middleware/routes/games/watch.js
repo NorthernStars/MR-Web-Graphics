@@ -8,6 +8,8 @@
  */
 "use strict";
 
+var settings = require( process.cwd() + '/settings.js' );
+
 var logging = require( process.cwd() + '/core/logging/logging.js' );
 var logger = logging.getLogger( 'routes' );
 
@@ -97,7 +99,7 @@ module.exports = (function(){
         
         if( req.params.game && _listOfGames[req.params.game]){
             
-            res.render('game', { title: req.params.game, isAuthenticated: req.session.loggedIn, joinedGames: req.session.joinedGames, game: _listOfGames[req.params.game] } );
+            res.render('game', { title: req.params.game, isAuthenticated: req.session.loggedIn, joinedGames: req.session.joinedGames, game: _listOfGames[req.params.game], serverHost: settings.core.server.websocket.ip + ':' + settings.core.server.websocket.port } );
             
         } else {
             

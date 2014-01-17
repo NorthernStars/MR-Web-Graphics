@@ -23,7 +23,11 @@ module.exports = (function(){
                     }
                 },
     			server: {
-    				port: 3000
+    				port: 3000,
+    				websocket: {
+    					ip: 'localhost',
+    					port: '3000'
+    				}
     			},
                 cache:{
                     lifetime: 1000 * 60 * 20 // 20 minuites lifetime
