@@ -224,7 +224,6 @@ module.exports = function( spec ){
 			
 				var worldDataInJSON = JSON.stringify( worldData.WorldData );
 				
-				logger.debug();
 				var currentTime = new Date().getTime();
 
 				if( sendToListenerTimer + 100 <= currentTime ){
