@@ -213,6 +213,8 @@ module.exports = function( spec ){
 		
 		//logger.trace( "server got:", xmlWorldData, "from", sender.address, ":", sender.port);
 		
+		try{
+		
 		parser.parseString( xmlWorldData, function ( error, worldData ) {
 			
 			if( !error && worldData &&  worldData.WorldData ){
@@ -230,6 +232,12 @@ module.exports = function( spec ){
 			}
 			
 		});
+		
+		} catch( error ){
+			
+			logger.error('Error parsing xml:\n' + error);
+			
+		}
 		
 	};
 	
