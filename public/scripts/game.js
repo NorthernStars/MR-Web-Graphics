@@ -297,20 +297,29 @@ function updateCanvas(wdata){
 //    document.getElementById('data').innerHTML = wdata ;
     wdata = JSON.parse(wdata);
     
-    // Set game info    
-    var timestamp = Math.round(wdata.time);    
-    var min = Math.floor(timestamp / 60);
-    var sec = Math.round(timestamp - min*60);
-    var time = pad(min, 2) + ":" + pad(sec, 2);
+    // Set game info 
+    var time = "00:00";
+    var gameinfo = "";
+    if( wdata.time ){
+	    var timestamp = Math.round(wdata.time);    
+	    var min = Math.floor(timestamp / 60);
+	    var sec = Math.round(timestamp - min*60);
+	    time = pad(min, 2) + ":" + pad(sec, 2);
+    }
     
-    var scoreYellow = pad(wdata.score[0].yellow, 2);
-    var scoreBlue = pad(wdata.score[0].blue, 2);
-    var teamYellow = document.getElementById('teamNameYellow').innerHTML;
-    var teamBlue = document.getElementById('teamNameBlue').innerHTML;
-    var gameinfo = teamYellow + " " + scoreYellow + " : " + scoreBlue + " " + teamBlue;
+    if( wdata.score ){
+	    var scoreYellow = pad(wdata.score[0].yellow, 2);
+	    var scoreBlue = pad(wdata.score[0].blue, 2);
+	    var teamYellow = document.getElementById('teamNameYellow').innerHTML;
+	    var teamBlue = document.getElementById('teamNameBlue').innerHTML;
+	    gameinfo = teamYellow + " " + scoreYellow + " : " + scoreBlue + " " + teamBlue;
+    }
     
     setGameHeader( gameinfo, time );
-    setGameInfo(wdata.playmode);
+    
+    if( wdata.playmode ){
+    	setGameInfo(wdata.playmode);
+    }
 
     // clear canvas
     clearCanvas();
@@ -321,81 +330,89 @@ function updateCanvas(wdata){
     var h = canvas.height;    
     var yScale = 0.75;
 
-    // get and draw flags
-    var flags = {};
-    var i;
-    for( i=0; i<wdata.flag.length; i++ ){
-    	var flag = wdata.flag[i];
-    	var x = Math.floor( flag.position[0].x * w );
-    	var y = Math.floor( (1-(flag.position[0].y / yScale)) * h );
-    	flags[flag.pointtype] = [x, y];
-    	drawArc(x, y);
+    // get and draw flags    
+    if( wdata.flag ){
+    	
+    	var flags = {};
+	    var i;
+	    for( i=0; i<wdata.flag.length; i++ ){
+	    	var flag = wdata.flag[i];
+	    	var x = Math.floor( flag.position[0].x * w );
+	    	var y = Math.floor( (1-(flag.position[0].y / yScale)) * h );
+	    	flags[flag.pointtype] = [x, y];
+	    	drawArc(x, y);
+	    }
+    
+	    // draw lines
+	    // field outline
+	    drawLine( flags['bottom_center'], flags['top_center'] );
+	    drawLine( flags['top_left_corner'], flags['top_right_corner'] );
+	    drawLine( flags['bottom_left_corner'], flags['bottom_right_corner'] );
+	    drawLine( flags['top_left_corner'], flags['top_left_pole'] );
+	    drawLine( flags['bottom_left_corner'], flags['bottom_left_pole'] );
+	    drawLine( flags['top_right_corner'], flags['top_right_pole'] );
+	    drawLine( flags['bottom_right_corner'], flags['bottom_right_pole'] );
+	    
+	    // small area
+	    drawLine( flags['top_left_pole'], flags['top_left_small_area'] );
+	    drawLine( flags['top_left_small_area'], flags['bottom_left_small_area'] );    
+	    drawLine( flags['bottom_left_small_area'], flags['bottom_left_pole'] );
+	    drawLine( flags['top_right_pole'], flags['top_right_small_area'] );
+	    drawLine( flags['top_right_small_area'], flags['bottom_right_small_area'] );    
+	    drawLine( flags['bottom_right_small_area'], flags['bottom_right_pole'] );
+	    
+	    // big area
+	    drawLine( [flags['top_left_pole'][0], flags['top_left_goal'][1]], flags['top_left_goal'] );
+	    drawLine( flags['top_left_goal'], flags['bottom_left_goal'] );    
+	    drawLine( flags['bottom_left_goal'], [flags['bottom_left_pole'][0], flags['bottom_left_goal'][1]] );
+	    drawLine( [flags['top_right_pole'][0], flags['top_right_goal'][1]], flags['top_right_goal'] );
+	    drawLine( flags['top_right_goal'], flags['bottom_right_goal'] );    
+	    drawLine( flags['bottom_right_goal'], [flags['bottom_right_pole'][0], flags['bottom_right_goal'][1]] );
+	    
+	    // draw center circle
+	    drawArc( flags['middle_center'][0], flags['middle_center'][1], 0.1*h );
+	    
+	    // draw goals
+	    var goalW = flags['top_left_pole'][0]*0.8;
+	    var goalH = flags['top_left_pole'][1]-flags['bottom_left_pole'][1];
+	    drawRectangle( flags['bottom_left_pole'][0]-goalW, flags['bottom_left_pole'][1], goalW, goalH, "yellow");
+	    drawRectangle( flags['top_right_pole'][0], flags['bottom_right_pole'][1], goalW, goalH, "blue");
+	    
     }
     
-    // draw lines
-    // field outline
-    drawLine( flags['bottom_center'], flags['top_center'] );
-    drawLine( flags['top_left_corner'], flags['top_right_corner'] );
-    drawLine( flags['bottom_left_corner'], flags['bottom_right_corner'] );
-    drawLine( flags['top_left_corner'], flags['top_left_pole'] );
-    drawLine( flags['bottom_left_corner'], flags['bottom_left_pole'] );
-    drawLine( flags['top_right_corner'], flags['top_right_pole'] );
-    drawLine( flags['bottom_right_corner'], flags['bottom_right_pole'] );
-    
-    // small area
-    drawLine( flags['top_left_pole'], flags['top_left_small_area'] );
-    drawLine( flags['top_left_small_area'], flags['bottom_left_small_area'] );    
-    drawLine( flags['bottom_left_small_area'], flags['bottom_left_pole'] );
-    drawLine( flags['top_right_pole'], flags['top_right_small_area'] );
-    drawLine( flags['top_right_small_area'], flags['bottom_right_small_area'] );    
-    drawLine( flags['bottom_right_small_area'], flags['bottom_right_pole'] );
-    
-    // big area
-    drawLine( [flags['top_left_pole'][0], flags['top_left_goal'][1]], flags['top_left_goal'] );
-    drawLine( flags['top_left_goal'], flags['bottom_left_goal'] );    
-    drawLine( flags['bottom_left_goal'], [flags['bottom_left_pole'][0], flags['bottom_left_goal'][1]] );
-    drawLine( [flags['top_right_pole'][0], flags['top_right_goal'][1]], flags['top_right_goal'] );
-    drawLine( flags['top_right_goal'], flags['bottom_right_goal'] );    
-    drawLine( flags['bottom_right_goal'], [flags['bottom_right_pole'][0], flags['bottom_right_goal'][1]] );
-    
-    // draw center circle
-    drawArc( flags['middle_center'][0], flags['middle_center'][1], 0.1*h );
-    
-    // draw goals
-    var goalW = flags['top_left_pole'][0]*0.8;
-    var goalH = flags['top_left_pole'][1]-flags['bottom_left_pole'][1];
-    drawRectangle( flags['bottom_left_pole'][0]-goalW, flags['bottom_left_pole'][1], goalW, goalH, "yellow");
-    drawRectangle( flags['top_right_pole'][0], flags['bottom_right_pole'][1], goalW, goalH, "blue");
-    
     // draw player
-    for( i=0; i<wdata.players.length; i++ ){
-    	var player = wdata.players[i];
-    	if( player.pointtype == "player" ){
-    		
-	    	var x = Math.floor( player.position[0].x * w );
-	    	var y = Math.floor( (1-(player.position[0].y / yScale)) * h );
-	    	var angle = -player.orientationangle[0];
-	    	var name = player.nickname[0] + " " + player.id[0];
-	    	var team = player.team[0];
-	    	
-	    	// set team
-	    	if(team == "yellow"){
-	    		team = TEAM_YELLOW;
+    if( wdata.players ){
+    	
+	    for( i=0; i<wdata.players.length; i++ ){
+	    	var player = wdata.players[i];
+	    	if( player.pointtype == "player" ){
+	    		
+		    	var x = Math.floor( player.position[0].x * w );
+		    	var y = Math.floor( (1-(player.position[0].y / yScale)) * h );
+		    	var angle = -player.orientationangle[0];
+		    	var name = player.nickname[0] + " " + player.id[0];
+		    	var team = player.team[0];
+		    	
+		    	// set team
+		    	if(team == "yellow"){
+		    		team = TEAM_YELLOW;
+		    	}
+		    	else if(team == "blue"){
+		    		team = TEAM_BLUE;
+		    	}
+		    	else{
+		    		team = TEAM_NONE;
+		    	}
+		    	
+		    	drawPlayer(x, y, angle, name, team);
+		    	
 	    	}
-	    	else if(team == "blue"){
-	    		team = TEAM_BLUE;
-	    	}
-	    	else{
-	    		team = TEAM_NONE;
-	    	}
-	    	
-	    	drawPlayer(x, y, angle, name, team);
-	    	
-    	}
+	    }
+	    
     }
     
     // draw ball
-    if( wdata.ball[0].pointtype == "ball" ){
+    if( wdata.ball && wdata.ball[0].pointtype == "ball" ){
     	var ballPos = wdata.ball[0].position[0];
     	drawBall(ballPos.x*w, (1-(ballPos.y/yScale))*h);
     }
