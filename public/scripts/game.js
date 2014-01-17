@@ -25,6 +25,7 @@ var botNameData = null;
 var img = document.createElement('img');
 function drawPlayer(x, y, angle, name, team){	
  	// get canvas elements
+	var img = document.createElement("img");
 	var h = canvas.height;
 	    
     // get player size
@@ -41,7 +42,6 @@ function drawPlayer(x, y, angle, name, team){
     	img.src = "/img/playernone.png";
     }
     
-    // draw image
     paintPlayerOnCanvas(img, pSize, x, y, angle, name, team);
 };
 
