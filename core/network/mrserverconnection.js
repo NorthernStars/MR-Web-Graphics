@@ -180,7 +180,8 @@ module.exports = function( spec ){
 		
 		parser.parseString( messageFromServer, function ( error, messageObject ) {
 
-			if( messageObject.connectionacknowlege.clientname.toString() === spec.connectionname &&
+			if( !error &&
+				messageObject.connectionacknowlege.clientname.toString() === spec.connectionname &&
 				messageObject.connectionacknowlege.connectionallowed.toString() === 'true' ){
 				
 				spec.mrservername = messageObject.connectionacknowlege.servername.toString();
@@ -214,7 +215,7 @@ module.exports = function( spec ){
 		
 		parser.parseString( xmlWorldData, function ( error, worldData ) {
 			
-			if(  worldData &&  worldData.WorldData ){
+			if( !error && worldData &&  worldData.WorldData ){
 			
 				spec.gamestatus = worldData.WorldData.playmode.toString();
 			
