@@ -132,6 +132,10 @@ module.exports = function( spec ){
 			
 			toServer.close();
 			
+			while( allListeners.length >= 0 ){
+			    delete allListeners.pop().connectionlistener[spec.connectionname];
+			}
+			
 			spec.connected = false;
 		}
 		
@@ -159,7 +163,6 @@ module.exports = function( spec ){
 			
 			allListeners.splice( socket.connectionlistener[spec.connectionname], 1);
 			delete socket.connectionlistener[spec.connectionname];
-			
 			
 		}
 		

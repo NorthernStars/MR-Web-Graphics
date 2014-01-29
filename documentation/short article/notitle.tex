@@ -52,26 +52,32 @@ mixed-reality, javascript, server, client, paper.
 
 \subsection{Project definition (Was machen wir?)}
 The projects goal is to bring the local mixed-reality-games to an audience everywhere in the world (Figure~\ref{fig:proj_goal}). All that is needed is a device with a HTML-5 compliant Browser and an internet-connection with a bit-rate of at least 10-kbit/s downstream.
+The primarily targeted devices are pcs, tablets and smart-phones but not limited to those. \\
+The games should be streamed in real-time from the mixed-reality game-server over a web-server to in-browser RICH-clients, where they will be displayed in the same fashion as the local mixed-reality-game graphics.
 \begin{figure}[!t]
     \centering
     \includegraphics[width=0.3\textwidth]{project-target.png}
     \caption{Project goal: Bringing MR to you!}
     \label{fig:proj_goal}
 \end{figure}
-The primarily targeted devices are pcs, tablets and smart-phones but not limited to those. \\
-The games should be streamed in real-time from the mixed-reality game-server over a web-server to in-browser RICH-clients, where they will be displayed in the same fashion as the local mixed-reality-game graphics.
 \subsection{Design (Wie sieht es aus?)}
-
-
+As in Figure~\ref{fig:proj_design} shown, the web-server is capable to establish a connection to any Mixed-Reality game-server and game over UDP. This connection is interchangeable an internal game representation, that converts the incoming XML to JSON and verifies it, manages the listening clients and encapsulates needed administrative functions. The verified JSON is sent over websockets at a fixed interval to the clients, (Canvas und so? RICH-Client usw)
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.3\textwidth]{design.png}
+    \caption{Project design}
+    \label{fig:proj_design}
+\end{figure}
 \subsection{Implementation(Wie ist es aufgebaut?)}
-
-
+\subsubsection{Server}
+The design for the server is implemented as a proof-of-concept on the server-framework Node.js~\cite{Node.js} with most of the needed configuration and essentials implemented with the middle-ware express~\cite{express}, such as session-management, URL-routing and serving of static files. The Website is constructed through templates with the template-engine jade~\cite{jade} and also served through express.\\
+The user-persistence is handled by an sqlite-database with sqlite3~\cite{sqlite3}, because of its convenience to setup and redesign in a agile software development environment~\cite{agile_devel} and the ease of conversion to a better setup when the project reaches maturity.\\
+The communication besides http is managed by websocket.io~\cite{websocket.io}\cite{smash_node.js}, an extension to express.\\ 
+To decode the incoming XML xml2js~\cite{xml2js} is used and to build an easy to manage and debug system extensive logging is done with log4js~\cite{log4js} an conversion of the Java logging package log4j2~\cite{log4j2}.\\
+Design Pattern, special things\\[3mm]
+\subsubsection{Client}
 \section{Conclusion}
 Ergebnis Auswertung und weitere Aussichten
-
-\appendices
-\section{Proof of the First Zonklar Equation}
-Appendix one text goes here.
 
 \section*{Acknowledgment}
 
@@ -79,9 +85,26 @@ The authors would like to thank...
 
 \begin{thebibliography}{1}
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+\bibitem{Node.js}
+Joyent,~Inc, \emph{Node.js}, \url{http://nodejs.org/}.
+\bibitem{express}
+expressjs.com, \emph{express web~application~framework~for~node}, \url{http://expressjs.com/}.
+\bibitem{jade}
+jade-lang.com, \emph{jade Node~Template~Engine}, \url{http://jade-lang.com/}.
+\bibitem{sqlite3}
+MapBox, \emph{node-sqlite3 - Asynchronous, non-blocking SQLite3 bindings for Node.js}, \url{https://github.com/mapbox/node-sqlite3}.
+\bibitem{agile_devel}
+K.~Beck, \emph{Extreme~programming~eXplained : embrace~change}, 2nd~ed. Addison-Wesley, 2005.
+\bibitem{websocket.io}
+G.~Rauch, \emph{websocket.io}, \url{https://npmjs.org/package/websocket.io}.
+\bibitem{smash_node.js}
+G.~Rauch, \emph{SMASHING~Node.js JavaScript~Everywhere}, 1st~ed. WILEY, 2012.
+\bibitem{xml2js}
+Leonidas-from-XIV, \emph{node-xml2js}, \url{https://github.com/Leonidas-from-XIV/node-xml2js}.
+\bibitem{log4js}
+nomiddlename, \emph{log4js-node}, \url{https://github.com/nomiddlename/log4js-node}.
+\bibitem{log4j2}
+Apache Software Foundation, \emph{Apache Log4j 2}, \url{http://logging.apache.org/log4j/2.x/index.html}.
 
 \end{thebibliography}
 
