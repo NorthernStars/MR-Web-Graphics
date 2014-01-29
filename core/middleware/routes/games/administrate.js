@@ -82,15 +82,13 @@ module.exports = (function(){
      */
     that.connectGame = function( req, res, next ){
         
-        if( req.session.loggedIn ){
-
-            if( req.params.game && _listOfGames[req.params.game] && !_listOfGames[req.params.game].connected() ){
+        if( req.session.loggedIn && req.params.game && _listOfGames[req.params.game] && !_listOfGames[req.params.game].connected() ){
                 
-                _listOfGames[req.params.game].connect();
+            _listOfGames[req.params.game].connect( function(){
                 
-            } 
-            //TODO: build own callback, so response comes after game connected
-            res.redirect( '/games/admin' );
+                res.redirect( '/games/admin' );
+                
+            });
             
         } else {
             
