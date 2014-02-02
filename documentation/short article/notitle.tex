@@ -30,8 +30,8 @@
 
 \title{WWW-Graphics-Module for Mixed-Reality-System}
 
-\author{Hannes~Eilers,~\textit{Master-student,~Chairman~student~group~NorthernStars,~FH-Kiel,}
-        Eike~Petersen,~\textit{Master-student,~FH-Kiel}}
+\author{Hannes~Eilers,~\textit{Master-student,~Chairman~student~group~NorthernStars,~UAS-Kiel,}
+Eike~Petersen,~\textit{Master-student,~FH-Kiel}}
 
 % The paper headers
 \markboth{Advanced JavaScript project paper, January~2014}%
@@ -50,27 +50,40 @@ mixed-reality, javascript, server, client, paper.
 
 \IEEEPARstart{T}{he}
 Mixed-Reality is a robocup soccer league that uses hardware and software
-simulation to develop artificial intelligences (AIs) for robots. The system
-used for playing in competitions all over the world uses a horizontal screen, that
-simulates a soccer field with field lines, goals and a ball. On the screen are
-real robots with quadratic dimensions for each side of nearly 25cm. A game
-server uses a vision system above the screen for tracking the robots and
-generating a worldmodel that includes positions of all robots as well as
-simulated objects like goals or important flags on the field. By using a
-infrared transmitter the server can send commands to the robots.\\
-For each robot a seperate process can connect to the game server to control the
-speed of the right and left wheel or the robot. The gameserver sends the
-worldmodel to this process, so that it can react to changes on the field.\\
-The Mixed-Reality system uses several modules to track and control the robots or
-to display the field on the screen.\\
-During a competition one AI for each robot connects to the game server using a
-local network and team leaders next tof the soccer field can request timeouts to
-change the behaviour of a AI or replace the robots for kick offs.
+simulation to develop artificial intelligences for robots. The system used for
+playing in competitions all over the world\cite{gerndt-case-study} uses a
+horizontal screen on which a soccer field with field lines, goals and a ball is
+simulated. On this screen real robots with quadratic dimensions for each side of
+nearly 2,5cm move. A game server uses a vision system above the screen for
+tracking the robots and generating a world-model that includes positions of all
+robots as well as simulated objects like goals or important positions on the
+field. By using an infrared transmitter the server sends commands to the
+robots(Figure~\ref{fig:mr_system}).\\
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.3\textwidth]{mr_system.png}
+    \caption{\textbf{Mixed-Reality system:} The simulated soccer field is
+    controled by a game server that uses several other modules for access to the
+    robots, displaying the field or interacting with human operator or
+    artifical intelligences}
+    \label{fig:mr_system}
+\end{figure}
+For each robot an artificial intelligence can connect to the game server to
+control the movement and actions of the robot. The game-server sends the
+world-model to this artificial intelligence, so that it can react to changes on the field.\\
+The Mixed-Reality system is module based and uses different modules to track and
+control the robots or to display the field on the screen.\\
+During a competition teams of artificial intelligences connect to the game
+server using a local network to control their designated robots and play matches
+against each other in realtime\cite{mr-web-northernstars}, while observers can
+watch the game live from the sidelines.
 
 \subsection{Project definition (Was machen wir?)}
-The projects goal is to bring the local mixed-reality-games to an audience everywhere in the world (Figure~\ref{fig:proj_goal}). All that is needed is a device with a HTML-5 compliant Browser and an internet-connection with a bit-rate of at least 10-kbit/s downstream.
-The primarily targeted devices are pcs, tablets and smart-phones but not limited to those.\\
-The games should be streamed in real-time from the mixed-reality game-server over a web-server to in-browser RICH-clients, where they will be displayed in the same fashion as the local mixed-reality-game graphics.
+The projects goal is to bring the local mixed-reality-games to an audience
+everywhere in the world (Figure~\ref{fig:proj_goal}) so that it is possible to
+observe matches or even play against each other without being present at the
+Mixed-Reality systems location. All that is needed is a device with a HTML5
+compliant Browser and an internet-connection with a bit-rate of at least 10-kbit/s downstream.
 \begin{figure}[!t]
     \centering
     \includegraphics[width=0.3\textwidth]{project-target.png}
@@ -78,7 +91,17 @@ The games should be streamed in real-time from the mixed-reality game-server ove
     \label{fig:proj_goal}
 \end{figure}
 \subsection{Design (Wie sieht es aus?)}
-As in Figure~\ref{fig:proj_design} shown, the web-server is capable to establish a connection to any Mixed-Reality game-server and game over UDP. This connection is interchangeable an internal game representation, that converts the incoming XML to JSON and verifies it, manages the listening clients and encapsulates needed administrative functions. The verified JSON is sent over websockets at a fixed interval to the clients, (Canvas und so? RICH-Client usw)
+As in Figure~\ref{fig:proj_design} shown, the web-server is capable to establish
+a connection to any Mixed-Reality game-server and game over UDP. This connection
+is interchangeable an internal game representation, that converts the incoming
+XML to JSON and verifies it, manages the listening clients and encapsulates
+needed administrative functions. The verified JSON is sent over websockets at a
+fixed interval to the clients, that checks the recieved JSON data for drawable
+objects. The objects are drawn using the 2D context of a HTML5
+canvas\cite{w3c-canvas}.\\
+The client offers forms for login an connecting to a new game, wich is only
+nessesary to connect to a new game. Watching a game is open to a non-resitricted
+audience.
 \begin{figure}[!t]
     \centering
     \includegraphics[width=0.3\textwidth]{design.png}
@@ -87,21 +110,87 @@ As in Figure~\ref{fig:proj_design} shown, the web-server is capable to establish
 \end{figure}
 \subsection{Implementation(Wie ist es aufgebaut?)}
 \subsubsection{Server}
-The design for the server is implemented as a proof-of-concept on the server-framework Node.js\cite{Node.js} with most of the needed configuration and essentials implemented with the middle-ware express~\cite{express}, such as session-management, URL-routing and serving of static files. The Website is constructed through templates with the template-engine jade\cite{jade} and also served through express.\\
-The user-persistence is handled by an sqlite-database with sqlite3\cite{sqlite3}, because of its convenience to setup and redesign in a agile software development environment\cite{agile_devel} and the ease of conversion to a better setup when the project reaches maturity.\\
-The communication besides http is managed by websocket.io\cite{websocket.io}\cite{smash_node.js}, an extension to express.\\ 
-To decode the incoming XML xml2js~\cite{xml2js} is used and to build an easy to manage and debug system extensive logging is done with log4js\cite{log4js} an conversion of the Java logging package log4j2\cite{log4j2}.\\
-All the modules written for the server use the functional inheritance/creation pattern\cite{js_goodparts} to create private and secure objects. Every time an object is needed only once, it is created as a singleton with closure\cite{js_designpattern} to avoid misuse and implementation errors. The communication between the mixed-reality-game representation and the connected websockets is implemented with a simplified observer pattern\cite{js_designpattern}.\\[3mm]
+The design for the server is implemented as a proof-of-concept on the
+server-framework Node.js\cite{Node.js} with most of the needed configuration and
+essentials implemented with the middle-ware express~\cite{express}, such as
+session-management, URL-routing and serving of static files. The Website is
+constructed through templates with the template-engine jade\cite{jade} and also served through express.\\
+The user-persistence is handled by an sqlite-database with
+sqlite3\cite{sqlite3}, because of its convenience to setup and redesign in a
+agile software development environment\cite{agile_devel} and the ease of
+conversion to a better setup when the project reaches maturity.\\
+The communication besides http is managed by
+websocket.io\cite{websocket.io}\cite{smash_node.js}, an extension to express.\\
+To decode the incoming XML xml2js~\cite{xml2js} is used and to build an easy to
+manage and debug system extensive logging is done with log4js\cite{log4js} an
+conversion of the Java logging package log4j2\cite{log4j2}.\\
+All the modules written for the server use the functional inheritance/creation
+pattern\cite{js_goodparts} to create private and secure objects. Every time an
+object is needed only once, it is created as a singleton with
+closure\cite{js_designpattern} to avoid misuse and implementation errors. The
+communication between the mixed-reality-game representation and the connected
+websockets is implemented with a simplified observer
+pattern\cite{js_designpattern}.\\[3mm]
 \subsubsection{Client}
+The client side web templates using CSS3\cite{w3c-css3} to specifiy the
+user interfaces design, generated from the HTML tags using the jade template
+engine. It includes a hidden overlaying login form, thats visibilty is
+accessable through an portable javascript function and used for login into webservers administration page.\\
+The CSS3 design also resets the browser based drawing styles for common HTML5
+tags to define a common design of the clients webpage on different browser
+versions. So a unique design for forms or list-like items can be guaranteed.\\
+For drawing graphical objects from the recieved JSON data a 2D context of a
+HTML5 canvas obejct is used. Everytime new data recieved from the server the
+canvas is cleared and the new data is drawn on it. A set of javascript functions
+allows context independend drawing of complex objects like rectangles, circles,
+dots or robot markers. So a RICH client\cite{rich-client} functkionality for
+different mixed-reality szenarios and applications is offered. However currently only
+drawing of soccer szenarios is implemented.\\
+For drawing simple objects like  rectangles or circles the build in canvas
+context instructions\cite{w3c-canvas} are used. For drawing the robots marker a
+more complex drawing is implemented, because the marker consists of a image
+representing its current position and team color and also a text showing
+information about the internal identification number of the robots and its name.
+So the client uses a reusable HTMl image object\cite{w3c-image} that is drawn on
+the canvas. After that the drawn image is no longer accessable and the image
+objetc can be resused for drawing an image again. Using this the bclient doesn't
+have to wait before drawing until the image object is loaded through the
+browser. The text for the robots information is added to the webpage document as
+a html tag with unique id, inside a hidden supsection of the documents
+structure. So the text position an orientation can be set using CSS3. This is
+nessesary because drawing the text directly on the canvas needs to much
+performance for smooth animations of the robot markers.
 \section{Conclusion}
-The project and the creation of the proof-of-concept have been a success, even while we where not able to bring mixed-reality to mobile users with smart-phones, because of the spotty HTML5 compliance, we achieved all others of our 1st~stage goals.\\
-Even in lieu of this more work is needed to develop the proof-of-concept further, to be easily and reliably used in the mixed-reality-system. Sorely needed is a rigorous easy  and automatic testing of all components and their implementation, witch has been neglected because of time- and manpower-constraints. Also should we implement all of our 2nd~stage goals, like replays of games, game-chat between spectators and a secure and robust account management with tie-ins to social media. Also when HTML5 will be fully implemented on all mobile devices, we can develop the mobile page. 
+The project and the creation of the proof-of-concept have been a success, even
+while we where not able to bring mixed-reality to mobile users with smart-phones, because of the spotty HTML5 compliance, we achieved all others of our 1st~stage goals.\\
+Even in lieu of this more work is needed to develop the proof-of-concept
+further, to be easily and reliably used in the mixed-reality-system. Sorely needed is a rigorous easy  and automatic testing of all components and their implementation, witch has been neglected because of time- and manpower-constraints. Also should we implement all of our 2nd~stage goals, like replays of games, game-chat between spectators and a secure and robust account management with tie-ins to social media. Also when HTML5 will be fully implemented on all mobile devices, we can develop the mobile page.
 \section*{Acknowledgment}
-The authors would like to thank the Fachhochschule Kiel for use of their location and rooms, the Hochschulgruppe NorthernStars, \url{www.northern-stars.de}, for supporting and helping us on the edges of the project and Prof. Manzke for letting us skirt his regulations, so that we could build something that we can use and develop further for the NorthernStars.\\
+The authors would like to thank the Unisversity of Applied Sciences Kiel for use
+of their location and rooms, the robotics group NorthernStars,
+\url{www.northern-stars.de}, for supporting and helping us on the edges of the project and Prof. Manzke for letting us skirt his regulations, so that we could build something that we can use and develop further for the NorthernStars.\\
 Our source-code lies at \url{https://github.com/NorthernStars/MR-Web-Graphics} and everyone who want to use or every develop it further is heartily encouraged to do so.
 
 \begin{thebibliography}{1}
 
+\bibitem{gerndt-case-study}
+R. Gerndt, M. Bohnen, R. da Silva Guerra, M. Asada, \emph{The Engineering of
+Mixed Reality Systems Human-Computer Interaction Series, Chapter 20: The RoboCup
+Mixed Reality League – A Case Study}, 1st~ed. Springer 2010
+\bibitem{mr-web-northernstars}
+NorthernStars, \emph{Mixed-Reality},
+\url{http://northernstars-wiki.wikidot.com/robocup:mixed-reality}
+\bibitem{w3c-canvas}
+W3C, \emph{HTML Canvas 2D Context}, \url{http://www.w3.org/TR/2dcontext/}
+\bibitem{w3c-css3}
+W3C, \emph{Introduction to CSS3},
+\url{http://www.w3.org/TR/2001/WD-css3-roadmap-20010523/}
+\bititem{rich-client}
+Wikipedia Foundations,~Inc., \emph{Rich client platform},
+\url{https://en.wikipedia.org/wiki/Rich_client_platform}
+\bibitem{w3c-image}
+W3C, \emph{Objects, Images, and Applets},
+\url{http://www.w3.org/TR/REC-html40/struct/objects.html#h-13.1}
 \bibitem{Node.js}
 Joyent,~Inc, \emph{Node.js}, \url{http://nodejs.org/}.
 \bibitem{express}
