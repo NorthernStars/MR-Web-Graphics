@@ -1,7 +1,7 @@
 MR-Web-Graphics
 ===============
 This projects contains a browser interface for the Mixed-Reality Graphics module.  
-It bases on a Node.js server, that connects to the Mixed-Reality Gameserver and offers a webpage to display games.  
+It bases on a Node.js server, that connects to the Mixed-Reality game-server and offers a web-page to display games.  
   
 Installation
 ------------
@@ -14,7 +14,7 @@ npm install
 Create database from projects root directory.  
 node setup_db.js 
 
-To configuer the server edit  
+To configure the server edit  
 settings.js 
 
 Usage
@@ -25,4 +25,5 @@ node core/servercore
   
 After that you can access the server through your browser on  
   
-localhost:3000  
+localhost:3000
+the test-user is user:wert pass:wert
